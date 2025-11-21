@@ -1,0 +1,11 @@
+{
+  "name": "darts",
+  "version": "1.0.0",
+  "description": "Simple darts player modules for IWD exercise",
+  "main": "dartsMain.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node dartsMain.js",
+    "test": "node test.js"
+  }
+}

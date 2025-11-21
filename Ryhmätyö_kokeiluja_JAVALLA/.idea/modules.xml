@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Darts_peli/Darts_peli.iml" filepath="$PROJECT_DIR$/Darts_peli/Darts_peli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Ryhmätyö_kokeiluja_JAVALLA.iml" filepath="$PROJECT_DIR$/.idea/Ryhmätyö_kokeiluja_JAVALLA.iml" />
+    </modules>
+  </component>
+</project>
