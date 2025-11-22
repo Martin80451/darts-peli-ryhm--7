@@ -1,0 +1,47 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto Condensed", sans-serif;
+}
+input {
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center;
+}
+.gameTypeButton {
+  margin: 5px;
+  padding: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border-width: 5px;
+  border-style: solid;
+  color: white;
+  cursor: pointer;
+}
+
+#button1 {
+  background-color: darkred;
+}
+#button2 {
+  background-color: darkblue;
+}
+
+#startGame {
+  margin: 5px;
+  display: block;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-width: 5px;
+  border-style: solid;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
