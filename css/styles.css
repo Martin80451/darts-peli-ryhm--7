@@ -1,0 +1,146 @@
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #393939;
+  margin: 0;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5e1bf;
+  width: 700px;
+  height: 100vh;
+}
+h1 {
+  font-size: 50px;
+  margin-top: 40px;
+}
+h2 {
+  font-size: 25px;
+}
+h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+h4 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+h5 {
+  font-size: 22px;
+  text-align: center;
+}
+input {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #313131;
+  border-radius: 5px;
+  width: 214px;
+  text-align: center;
+}
+
+.gameTypeSelection {
+  display: center;
+  width: 150px;
+  height: 80px;
+  text-align: center;
+  margin: auto;
+}
+
+#startGame {
+  display: flex;
+  margin: 40px auto;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-width: 5px;
+  border-style: solid;
+}
+
+#settingsPopupBackground {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.settingPopup {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+  text-align: center;
+}
+
+#startGame:hover {
+  transform: scale(1.1);
+}
+
+.scoreCounterForm {
+  background-color: chocolate;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  /* background-color: blueviolet;  */
+  margin: 0px;
+}
+.player1Name {
+  width: 250px;
+  margin: 0px 15px;
+  padding: 10px;
+  text-align: center;
+  background-color: lightblue;
+}
+.player2Name {
+  width: 250px;
+  margin: 0px 15px;
+  padding: 10px;
+  text-align: center;
+  background-color: lightgreen;
+}
+.player1Score {
+  width: 250px;
+  height: 400px;
+  margin: 0px 15px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(84, 147, 155);
+}
+.player2Score {
+  width: 250px;
+  height: 400px;
+  margin: 0px 15px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(89, 149, 74);
+}
+#resetGame {
+  display: flex;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-width: 5px;
+  border-style: solid;
+}
+#newScoreInput {
+  margin: 5px;
+}
