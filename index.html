@@ -18,40 +18,46 @@
   </head>
   <body>
     <section>
-    <h1>Darts Points</h1>
+    <h1>Darts Points Calculator</h1>
     <form id="startGameForm">
-      <h3>Choose players:</h3>
+      <h3>Players:</h3>
+      <label for="numPlayers">Select number of players (1-4):</label>
       <input
-        id="player1"
-        class="player"
-        label for="Player 1 name"
-        placeholder="Player 1"
-        name="player1"
-        type="text"
+        id="numPlayers"
+        type="number"
+        name="numPlayers"
+        min="1"
+        max="4"
+        value="1"
       />
+      <br/>
+      <label for="randomizePlayersCheck">Randomize first player:</label>
       <input
-        id="player2"
-        class="player"
-        label for="Player 2 name"
-        placeholder="Player 2"
-        name="player2"
-        type="text"
+        id="randomizePlayersCheck"
+        type="checkbox"
+        name="randomizePlayersCheck"
       />
+
       <h3>Select game type:</h3>
-      <button class="gameTypeButton" id="button1" type="button">301 up</button>
-      <button class="gameTypeButton" id="button2" type="button">501 up</button>
+      <select id="gameType" name="gameType" class="gameTypeSelection">
+        <option value="301">301</option>
+        <option value="501">501</option>
+      </select>
 
-      <h3>Select set size:</h3>
-      <input id="setSize" type="number" name="setSize" min="1" max="100" value="3" />
-      
-        <h4>Current settings:</h4>
-        <div id="currentPlayers"> Players: </div>
-        <div id="currentGameType"> Game Type: </div>
-        <div id="currentSetSize">Set Size: </div>
+        <h3>Select set size:</h3>
+        <input id="setSize" type="number" name="setSize" min="1" max="100" value="3" />
+        <button id="startGame" type="button">Start Game</button>
+      </form>
 
-      <button id="startGame" type="button">Start Game</button>
-    </form>
-    <script src="script.js"></script>
+      <div id="settingsPopupBackground">
+        <div class="settingPopup">
+          <div id="popupContent"></div>
+          <button id="closePopup">Close</button>
+          <button id="continuePopup">Continue</button>
+        </div>
+      </div>
+
+      <script src="script.js"></script>
     </section>
   </body>
 </html>

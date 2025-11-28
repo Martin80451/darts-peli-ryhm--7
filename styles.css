@@ -34,7 +34,7 @@ h5 {
   text-align: center;
 }
 input {
-  margin: 20px;
+  margin: 10px;
   padding: 10px;
   border: 2px solid #313131;
   border-radius: 5px;
@@ -42,23 +42,12 @@ input {
   text-align: center;
 }
 
-.gameTypeButton {
-  margin: 5px;
-  padding: 60px 100px;
-  font-size: 110%;
-  font-weight: bold;
-  border-radius: 5px;
-  border-width: 5px;
-  border-style: solid;
-  color: white;
-  cursor: pointer;
-}
-
-#button1 {
-  background-color: #337d4a;
-}
-#button2 {
-  background-color: #e8cd5e;
+.gameTypeSelection {
+  display: center;
+  width: 150px;
+  height: 80px;
+  text-align: center;
+  margin: auto;
 }
 
 #startGame {
@@ -71,19 +60,28 @@ input {
   border-style: solid;
 }
 
-#button1:hover,
-#button2:hover,
+#settingsPopupBackground {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.settingPopup {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+  text-align: center;
+}
+
 #startGame:hover {
-  transform: scale(1.1);
-}
-
-#button1:focus,
-#button2:focus {
-  transform: scale(1.1);
-}
-
-#button1:active,
-#button2:active {
   transform: scale(1.1);
 }
 
