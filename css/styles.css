@@ -33,21 +33,24 @@ h5 {
   font-size: 22px;
   text-align: center;
 }
-input {
+input, select {
   margin: 10px;
   padding: 10px;
   border: 2px solid #313131;
+  background-color: #ffffff;
   border-radius: 5px;
-  width: 214px;
+  width: 140px;
   text-align: center;
 }
 
-.gameTypeSelection {
-  display: center;
-  width: 150px;
-  height: 80px;
-  text-align: center;
-  margin: auto;
+#randomizePlayersCheck {
+  width: 20px;
+  height: 20px;
+  margin-left: 30px;
+}
+
+option, label {
+  font-size: 18px;
 }
 
 #startGame {

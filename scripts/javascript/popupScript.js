@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // popupin sisältö
     popupContent.innerHTML = `
-      <h2>Confirm Game Settings</h2>
+      <h2>Confirm Game Settings?</h2>
       <p><strong>Number of Players:</strong> ${numPlayers}</p>
       <p><strong>Randomize First Player:</strong> ${document.getElementById('randomizePlayersCheck').checked ? 'Yes' : 'No'}</p>
       <p><strong>Game Type:</strong> ${gameType}</p>
