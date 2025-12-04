@@ -104,21 +104,39 @@ input {
   /* background-color: blueviolet;  */
   margin: 0px;
 }
-.player1Name {
+#player1Name {
   width: 250px;
   margin: 0px 15px;
   padding: 10px;
   text-align: center;
   background-color: lightblue;
 }
-.player2Name {
+#player2Name {
   width: 250px;
   margin: 0px 15px;
   padding: 10px;
   text-align: center;
   background-color: lightgreen;
 }
-.player1Score {
+
+.noBorder,
+.noBorder:focus,
+.noBorder:active,
+.noBorder:hover {
+  border: none;
+  border-image: none;
+  border-image-width: 0;
+  border-image-slice: 0;
+  border-image-repeat: unset;
+  outline: none;
+  box-shadow: none;
+}
+
+.activeBorder {
+  border: 5px solid white;
+}
+
+#player1Score {
   width: 250px;
   height: 400px;
   margin: 0px 15px;
@@ -126,7 +144,7 @@ input {
   text-align: center;
   background-color: rgb(84, 147, 155);
 }
-.player2Score {
+#player2Score {
   width: 250px;
   height: 400px;
   margin: 0px 15px;
