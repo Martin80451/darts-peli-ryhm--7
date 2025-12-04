@@ -1,4 +1,4 @@
-const playerCount = 4;
+const playerCount = 2;
 const players = [];
 for (let i = 0; i < playerCount; i++) {
   players.push([]);
@@ -6,14 +6,7 @@ for (let i = 0; i < playerCount; i++) {
 const scoreInput = document.getElementById("score");
 const player1Header = document.getElementById("player1Name");
 const player2Header = document.getElementById("player2Name");
-const player3Header = document.getElementById("player3Name");
-const player4Header = document.getElementById("player4Name");
-const playerHeaders = [
-  player1Header,
-  player2Header,
-  player3Header,
-  player4Header,
-];
+const playerHeaders = [player1Header, player2Header];
 let turns = 0;
 
 function addToScore(e) {
