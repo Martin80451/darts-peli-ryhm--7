@@ -33,6 +33,9 @@ h5 {
   font-size: 22px;
   text-align: center;
 }
+tr {
+  height: 35.8px;
+}
 input {
   margin: 20px;
   padding: 10px;
