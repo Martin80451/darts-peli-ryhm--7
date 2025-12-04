@@ -137,7 +137,7 @@ input {
 }
 
 #player1Score {
-  width: 250px;
+  width: 270px;
   height: 400px;
   margin: 0px 15px;
   padding: 10px;
@@ -145,7 +145,7 @@ input {
   background-color: rgb(84, 147, 155);
 }
 #player2Score {
-  width: 250px;
+  width: 270px;
   height: 400px;
   margin: 0px 15px;
   padding: 10px;

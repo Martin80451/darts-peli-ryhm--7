@@ -16,7 +16,7 @@ function addToScore(e) {
   player.unshift(scoreInput.value);
   header.classList.add("activeBorder");
   header.classList.remove("noBorder");
-  const otherHeaders = playerHeaders.filter((h) => h !== header);
+  let otherHeaders = playerHeaders.filter((h) => h !== header);
   for (let i = 0; i < playerHeaders.length; i++) {
     otherHeaders[0].classList.remove("activeBorder");
     otherHeaders[0].classList.add("noBorder");
