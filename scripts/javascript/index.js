@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const continuePopupBtn = document.getElementById("continuePopup");
   const closePopupBtn = document.getElementById("closePopup");
 
+  // Hold player names here so multiple handlers can access them
+  let names = [];
+
   let randomizer = false; //TODO Tämän arvon korvaa/ otetaan main/aloitus sivulta, random checkboxin tilasta.
   document.getElementById("randomizePlayersCheck").checked
     ? (randomizer = true)
@@ -71,28 +74,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const p3name = p3Input.hidden ? null : p3Input.value.trim();
     const p4name = p4Input.hidden ? null : p4Input.value.trim();
 
+    document.getElementById("randomizePlayersCheck").checked
+      ? (randomizer = true)
+      : (randomizer = false);
+
     console.log("Player names:");
     console.log("Player 1:", p1name);
     console.log("Player 2:", p2name);
     console.log("Player 3:", p3name);
     console.log("Player 4:", p4name);
 
-    const names = [p1name, p2name, p3name, p4name];
-    const playersInGame = names
-      .map((n, i) => (n ? i + 1 : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
-      .filter((n) => n !== null);
+    names = [p1name, p2name, p3name, p4name];
+    console.log(names);
     const playerNamesInGame = names
       .map((n) => (n ? n : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
       .filter((n) => n !== null);
-
-    if (randomizer) {
-      // Valitsee yhden pelaajan satunnaisesti aktiivisista pelaajista jos randomizer on true
-      const startingPlayer =
-        playersInGame[Math.floor(Math.random() * playersInGame.length)];
-      showPopup(startingPlayer);
-    } else {
-      //TODO: Muuta tämä osio siten, että se ohjaa pelaajan suoraan peliin ilman popupia.
-    }
 
     console.log("Player names set to:", p1name, p2name, p3name, p4name);
 
@@ -118,7 +114,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // siirtyy scorecounter.html sivulle, (tarvis viellä tapa nimetä pelaajat)
   // TODO: tähän lisäys että tulis joko uusi popup jossa nimetään pelaajat
   continuePopupBtn.addEventListener("click", function () {
-    window.location.href = "PelaajatJaKolikot/annaNimet.html";
+    console.log(randomizer);
+    const playersInGame = names
+      .map((n, i) => (n ? i + 1 : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
+      .filter((n) => n !== null);
+    if (randomizer) {
+      console.log("Randomizer is true");
+      // Valitsee yhden pelaajan satunnaisesti aktiivisista pelaajista jos randomizer on true
+      popup.style.display = "none";
+      const startingPlayer =
+        playersInGame[Math.floor(Math.random() * playersInGame.length)];
+      showPopup(startingPlayer);
+    } else {
+      //TODO: Muuta tämä osio siten, että se ohjaa pelaajan suoraan peliin ilman popupia.
+    }
+    // window.location.href = "PelaajatJaKolikot/annaNimet.html";
   });
 
   closePopupBtn.addEventListener("click", function () {
