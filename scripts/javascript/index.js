@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("closePopupPlayerChosen")
     .addEventListener("click", () => closePopup());
 
-  giveNames();
+  giveNames(2); // Alustaa pelin kahdelle pelaajalle oletuksena
 
   document.getElementById("startGame").addEventListener("click", () => {
     const numPlayers = numPlayersInput.value;
