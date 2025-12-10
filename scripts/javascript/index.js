@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const startGameBtn = document.getElementById("startGame");
+  // const startGameBtn = document.getElementById("startGame");
   const numPlayersInput = document.getElementById("numPlayers");
   const gameTypeSelect = document.getElementById("gameType");
   const setSizeInput = document.getElementById("setSize");
-
-  const popup = document.getElementById("settingsPopupBackground");
-  const popupContent = document.getElementById("popupContent");
-  const continuePopupBtn = document.getElementById("continuePopup");
-  const closePopupBtn = document.getElementById("closePopup");
 
   const p1Input = document.getElementById("player1");
   const p2Input = document.getElementById("player2");
   const p3Input = document.getElementById("player3");
   const p4Input = document.getElementById("player4");
+
+  const popup = document.getElementById("settingsPopupBackground");
+  const popupContent = document.getElementById("popupContent");
+  const continuePopupBtn = document.getElementById("continuePopup");
+  const closePopupBtn = document.getElementById("closePopup");
 
   let randomizer = false; //TODO Tämän arvon korvaa/ otetaan main/aloitus sivulta, random checkboxin tilasta.
   document.getElementById("randomizePlayersCheck").checked
@@ -62,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("after init:", p3Input, p4Input);
 
   document.getElementById("startGame").addEventListener("click", () => {
+    const numPlayers = numPlayersInput.value;
+    const gameType = gameTypeSelect.value;
+    const setSize = setSizeInput.value;
+
     const p1name = p1Input.value.trim();
     const p2name = p2Input.value.trim();
     const p3name = p3Input.hidden ? null : p3Input.value.trim();
@@ -77,6 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const playersInGame = names
       .map((n, i) => (n ? i + 1 : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
       .filter((n) => n !== null);
+    const playerNamesInGame = names
+      .map((n) => (n ? n : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
+      .filter((n) => n !== null);
 
     if (randomizer) {
       // Valitsee yhden pelaajan satunnaisesti aktiivisista pelaajista jos randomizer on true
@@ -88,18 +95,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     console.log("Player names set to:", p1name, p2name, p3name, p4name);
-  });
-
-  startGameBtn.addEventListener("click", function () {
-    const numPlayers = numPlayersInput.value;
-    const gameType = gameTypeSelect.value;
-    const setSize = setSizeInput.value;
 
     // popupin sisältö
     popupContent.innerHTML = `
       <h2>Confirm Game Settings?</h2>
       <p><strong>Number of Players:</strong> ${numPlayers}</p>
-      <p><strong>Player names:</strong> </p>
+      <p><strong>Player names: ${
+        playerNamesInGame.length == 2
+          ? playerNamesInGame.join(" & ")
+          : playerNamesInGame.join(", ")
+      }</strong> </p>
       <p><strong>Randomize First Player:</strong> ${
         document.getElementById("randomizePlayersCheck").checked ? "Yes" : "No"
       }</p>
