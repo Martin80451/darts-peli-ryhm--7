@@ -18,36 +18,81 @@
   </head>
   <body>
     <section>
-    <h1>Darts Point Calculator</h1>
-    
-    <form id="startGameForm">
-      <h3>Players:</h3>
-      <label for="numPlayers">Select number of players (1-4):</label>
-      <input
-        id="numPlayers"
-        type="number"
-        name="numPlayers"
-        min="1"
-        max="4"
-        value="1"
-      />
-      <br/>
-      <label for="randomizePlayersCheck">Randomize first player:</label>
-      <input
-        id="randomizePlayersCheck"
-        type="checkbox"
-        name="randomizePlayersCheck"
-      />
+      <h1>Darts Point Calculator</h1>
 
-      <h3>Select game type:</h3>
-      <select id="gameType" name="gameType" class="gameTypeSelection">
-        <option value="301">301</option>
-        <option value="501">501</option>
-      </select>
+      <form id="startGameForm">
+        <h3>Players:</h3>
+        <label for="numPlayers">Select number of players (1-4):</label>
+        <input
+          id="numPlayers"
+          type="number"
+          name="numPlayers"
+          min="1"
+          max="4"
+          value="1"
+        />
+        <div id="userInputs">
+          <input
+            id="player1"
+            class="player"
+            label
+            for="Player 1 name"
+            placeholder="Player 1"
+            name="player1"
+            type="text"
+          />
+          <input
+            id="player2"
+            class="player"
+            label
+            for="Player 2 name"
+            placeholder="Player 2"
+            name="player2"
+            type="text"
+          />
+          <input
+            id="player3"
+            class="player"
+            label
+            for="Player 3 name"
+            placeholder="Player 3"
+            name="player3"
+            type="text"
+          />
+          <input
+            id="player4"
+            class="player"
+            label
+            for="Player 4 name"
+            placeholder="Player 4"
+            name="player4"
+            type="text"
+          />
+        </div>
+        <br />
+        <label for="randomizePlayersCheck">Randomize first player:</label>
+        <input
+          id="randomizePlayersCheck"
+          type="checkbox"
+          name="randomizePlayersCheck"
+        />
 
-      <h3>Select set size:</h3>
-      <input id="setSize" type="number" name="setSize" min="1" max="10" value="3" />
-      <button id="startGame" type="button">Start Game</button>
+        <h3>Select game type:</h3>
+        <select id="gameType" name="gameType" class="gameTypeSelection">
+          <option value="301">301</option>
+          <option value="501">501</option>
+        </select>
+
+        <h3>Select set size:</h3>
+        <input
+          id="setSize"
+          type="number"
+          name="setSize"
+          min="1"
+          max="10"
+          value="3"
+        />
+        <button id="startGame" type="button">Start Game</button>
       </form>
 
       <div id="settingsPopupBackground">
@@ -57,9 +102,17 @@
           <button id="continuePopup">Continue</button>
         </div>
       </div>
-
-      <script src="scripts/javascript/popupScript.js"></script>
     </section>
-    <script src="annaNimet.js"></script>
+    <div id="overlay" class="overlay">
+      <div class="popup">
+        <img id="popupImg" src="" class="popup-image" alt="" />
+        <p class="popup-text">
+          pelaaja <span id="popupPlayerNum"></span> aloittaa
+        </p>
+        <button class="closePopup" onclick="closePopup()">OK</button>
+      </div>
+    </div>
+    <script src="scripts/javascript/popupScript.js"></script>
+    <script src="PelaajatJaKolikot/annaNimet.js"></script>
   </body>
 </html>
