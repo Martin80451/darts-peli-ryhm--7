@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const closePopupBtn = document.getElementById("closePopup");
 
   let names = [];
+  let playerNamesInGame;
   let randomizer = false;
   document.getElementById("randomizePlayersCheck").checked
     ? (randomizer = true)
@@ -50,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     popupImg.src = images[playerNum];
-    popupPlayerNum.textContent = playerNum;
+    popupPlayerNum.textContent = playerNamesInGame[playerNum - 1];
 
     overlay.style.display = "flex";
   }
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       : (randomizer = false);
 
     names = [p1name, p2name, p3name, p4name];
-    const playerNamesInGame = names
+    playerNamesInGame = names
       .map((n) => (n ? n : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
       .filter((n) => n !== null);
 
