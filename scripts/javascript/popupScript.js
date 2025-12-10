@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // siirtyy scorecounter.html sivulle, (tarvis viellä tapa nimetä pelaajat)
   // TODO: tähän lisäys että tulis joko uusi popup jossa nimetään pelaajat
   continuePopupBtn.addEventListener('click', function () {
-    window.location.href = 'scorecounter.html';
+    window.location.href = 'PelaajatJaKolikot/annaNimet.html';
   });
 
   closePopupBtn.addEventListener('click', function () {

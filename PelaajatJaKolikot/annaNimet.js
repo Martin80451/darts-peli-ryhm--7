@@ -1,9 +1,10 @@
 
-let randomizer = true; //TODO Tämän arvon korvaa/ otetaan main/aloitus sivulta, random checkboxin tilasta.
+let randomizer = false; //TODO Tämän arvon korvaa/ otetaan main/aloitus sivulta, random checkboxin tilasta.
+const randomizePlayersCheck = document.getElementById("randomizePlayersCheck").checked ? randomizer = true : randomizer = false;
 
 
 function getPlayerCount() {
-    var playerCount = 2; //TODO oletuksena 2 pelaajaa. Tämän arvon olisi tarkoitus saada main/aloitus sivulta.
+    var playerCount = 3; //TODO oletuksena 2 pelaajaa. Tämän arvon olisi tarkoitus saada main/aloitus sivulta.
     return playerCount;
 }
 
