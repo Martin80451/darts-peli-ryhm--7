@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // siirtyy scorecounter.html sivulle
   continuePopupBtn.addEventListener("click", function () {
-    console.log(randomizer);
     const playersInGame = names
       .map((n, i) => (n ? i + 1 : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
       .filter((n) => n !== null);
