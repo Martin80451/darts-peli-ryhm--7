@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const continuePopupBtn = document.getElementById("continuePopup");
   const closePopupBtn = document.getElementById("closePopup");
 
-  // Hold player names here so multiple handlers can access them
   let names = [];
-
   let randomizer = false; //TODO Tämän arvon korvaa/ otetaan main/aloitus sivulta, random checkboxin tilasta.
   document.getElementById("randomizePlayersCheck").checked
     ? (randomizer = true)
@@ -45,10 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.getElementById("overlay");
 
     const images = {
-      1: "RTyö_kolikot/KolikkoYks.png",
-      2: "RTyö_kolikot/KolikkoKaks.png",
-      3: "RTyö_kolikot/KolikkoKolme.png",
-      4: "RTyö_kolikot/KolikkoNelja.png",
+      1: "images/playercoin1.png",
+      2: "images/playercoin2.png",
+      3: "images/playercoin3.png",
+      4: "images/playercoin4.png",
     };
 
     popupImg.src = images[playerNum];
@@ -60,6 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function closePopup() {
     document.getElementById("overlay").style.display = "none";
   }
+
+  document
+    .getElementById("closePopupPlayerChosen")
+    .addEventListener("click", () => closePopup());
 
   giveNames();
   console.log("after init:", p3Input, p4Input);

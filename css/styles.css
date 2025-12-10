@@ -202,7 +202,7 @@ label {
   font-weight: bold;
 }
 
-.closePopup {
+#closePopupPlayerChosen {
   padding: 10px 20px;
   border: none;
   background: #333;
@@ -211,6 +211,6 @@ label {
   cursor: pointer;
   border-radius: 6px;
 }
-.closePopup:hover {
+#closePopupPlayerChosen:hover {
   background: #555;
 }

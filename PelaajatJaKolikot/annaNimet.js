@@ -37,10 +37,12 @@ function showPopup(playerNum) {
 
   overlay.style.display = "flex";
 }
-
 function closePopup() {
   document.getElementById("overlay").style.display = "none";
 }
+document
+  .getElementsByClassName("closePopup")
+  .addEventListener("click", () => closePopup());
 
 function initialize() {
   p1Input = document.getElementById("player1");
