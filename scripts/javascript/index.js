@@ -133,3 +133,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 });
+
+//TODO: Pelaajille on pakko antaa nimet ennen pelin aloittamista.
