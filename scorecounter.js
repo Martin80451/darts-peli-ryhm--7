@@ -26,9 +26,9 @@ function addToScore(e) {
     otherHeaders[0].classList.remove("activeBorder");
     otherHeaders[0].classList.add("noBorder");
   }
-
-  for (let j = 0; j < table.rows.length; j++) {
-    table.rows[j].cells[0].innerHTML = newestTenPoints[j]
+  //Lisätään pisteet taulukkoon horisontaalisesti
+  for (let j = 0; j < table.rows[0].cells.length; j++) {
+    table.rows[0].cells[j].innerHTML = newestTenPoints[j]
       ? newestTenPoints[j]
       : "";
   }

@@ -139,22 +139,29 @@ input {
   border: 5px solid white;
 }
 
-#player1Score {
-  width: 270px;
-  height: 400px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(84, 147, 155);
-}
+#player1Score,
 #player2Score {
-  width: 270px;
-  height: 400px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(89, 149, 74);
+  display: flex;
+  flex-direction: row;   /* Tekee taulukosta horisontaalisen */
+  justify-content: center;
+  align-items: center;
 }
+
+#player1Score tr,
+#player2Score tr {
+  display: flex;        /* Tekee rivistä joustavan taulukon */
+}
+
+#player1Score td,
+#player2Score td {
+  padding: 8px;
+  margin: 4px;
+  background: #f0dcb5;
+  border-radius: 6px;
+  width: 30px;
+}
+
+
 #resetGame {
   display: flex;
   margin: 20px auto;
