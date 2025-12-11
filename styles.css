@@ -121,6 +121,20 @@ input {
   text-align: center;
   background-color: lightgreen;
 }
+#player3Name {
+  width: 250px;
+  margin: 0px 15px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(235, 144, 238);
+}
+#player4Name {
+  width: 250px;
+  margin: 0px 15px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(238, 144, 144);
+}
 
 .noBorder,
 .noBorder:focus,
@@ -140,7 +154,7 @@ input {
 }
 
 #player1Score,
-#player2Score {
+#player2Score,#player3Score,#player4Score {
   display: flex;
   flex-direction: row;   /* Tekee taulukosta horisontaalisen */
   justify-content: center;
@@ -148,12 +162,13 @@ input {
 }
 
 #player1Score tr,
-#player2Score tr {
+#player2Score tr,#player3Score tr,#player4Score tr {
   display: flex;        /* Tekee rivistä joustavan taulukon */
 }
 
 #player1Score td,
-#player2Score td {
+#player2Score td,#player3Score td,#player4Score td {
+  text-align: center;
   padding: 8px;
   margin: 4px;
   background: #f0dcb5;

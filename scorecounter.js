@@ -1,15 +1,47 @@
-const playerCount = 2;
+
+function getPlayerCount() {
+    var playerCount = 2; //TODO oletuksena 2 pelaajaa. Tämän arvon olisi tarkoitus saada main/aloitus sivulta..
+    return playerCount;
+}
+
+// givePlayersScoreboard jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat pistetaulukot
+function givePlayersScoreboard() {
+    const count = getPlayerCount();
+    //piilota pelaajien nimiet
+    player3Header.hidden = count < 3;
+    player4Header.hidden = count < 4;
+    //piilota pelaajien pistetaulukot
+    player4Table.style.display = count < 4 ? "none" : "flex";
+    player3Table.style.display = count < 3 ? "none" : "flex";
+}
+
+const playerCount = getPlayerCount();
 const players = [];
 for (let i = 0; i < playerCount; i++) {
   players.push([]);
 }
 const scoreInput = document.getElementById("score");
+//Pelaajat 1 ja 2
 const player1Header = document.getElementById("player1Name");
 const player2Header = document.getElementById("player2Name");
 const player1Table = document.getElementById("player1Score");
 const player2Table = document.getElementById("player2Score");
-const playerHeaders = [player1Header, player2Header];
-const playerTables = [player1Table, player2Table];
+//Pelaajat 3 ja 4
+const player3Header = document.getElementById("player3Name");
+const player4Header = document.getElementById("player4Name");
+const player3Table = document.getElementById("player3Score");
+const player4Table = document.getElementById("player4Score");
+givePlayersScoreboard();
+
+//Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
+const allPlayers = [player1Header, player2Header, player3Header, player4Header];
+const allTables = [player1Table, player2Table, player3Table, player4Table];
+
+//Lisätään aktiiviset pelaajat ja taulukot listoihin
+const playerHeaders = allPlayers.slice(0, playerCount);
+const playerTables = allTables.slice(0, playerCount);
+console.log("Active player headers:", playerHeaders);
+console.log("Active player tables:", playerTables);
 let turns = 0;
 
 function addToScore(e) {
@@ -22,9 +54,10 @@ function addToScore(e) {
   header.classList.add("activeBorder");
   header.classList.remove("noBorder");
   let otherHeaders = playerHeaders.filter((h) => h !== header);
-  for (let i = 0; i < playerHeaders.length; i++) {
-    otherHeaders[0].classList.remove("activeBorder");
-    otherHeaders[0].classList.add("noBorder");
+
+  for (let i = 0; i < otherHeaders.length; i++) {
+    otherHeaders[i].classList.remove("activeBorder");
+    otherHeaders[i].classList.add("noBorder");
   }
   //Lisätään pisteet taulukkoon horisontaalisesti
   for (let j = 0; j < table.rows[0].cells.length; j++) {
