@@ -164,6 +164,8 @@ input {
 #player1Score tr,
 #player2Score tr,#player3Score tr,#player4Score tr {
   display: flex;        /* Tekee rivistä joustavan taulukon */
+border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut toistaseks osaaminen vähä hakusessa ~ Thomas*/
+  
 }
 
 #player1Score td,

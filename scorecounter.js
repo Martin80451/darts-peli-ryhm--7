@@ -1,6 +1,6 @@
 
 function getPlayerCount() {
-    var playerCount = 2; //TODO oletuksena 2 pelaajaa. Tämän arvon olisi tarkoitus saada main/aloitus sivulta..
+    var playerCount = 4; //TODO oletuksena 2 pelaajaa. Tämän arvon olisi tarkoitus saada main/aloitus sivulta..
     return playerCount;
 }
 
