@@ -52,7 +52,7 @@ scoreInput.addEventListener('keydown', (e) => {
       alert("Syötä pistemäärä numerona.");
       return;
     }
-    
+
     if(scoreInput.value <= 180){ //Maksimipistemäärä yhdellä heitto vuorolla on 180
       addToScore();
     }
@@ -87,6 +87,50 @@ console.log("Active player headers:", playerHeaders);
 console.log("Active player tables:", playerTables);
 let turns = 0;
 
+//-------------------PISTEIDEN JA LEGIEN KERÄYS JA NIIDEN TALLETUS NÄYTÖLLE---------------------------//
+
+//Pelaajien pistemäärien päivitys
+const player1wins = document.getElementById("player1wins");
+const player2wins = document.getElementById("player2wins");
+const player3wins = document.getElementById("player3wins");
+const player4wins = document.getElementById("player4wins");
+
+let playerPoints = [0, 0, 0, 0];
+let playerLegsWon = [0, 0, 0, 0];
+let amountleft = [501, 501, 501, 501]; //TODO: Muuta alkupisteet dynaamisesti aloitusnäytöltä
+function playerPointsUpdate() {
+  //Lasketaan pelaajien pistemäärät ja vähennetään ne aloituspisteistä.
+  for (let i = 0; i < playerCount; i++) {
+    playerPoints[i] = players[i].reduce((a, b) => Number(a) + Number(b), 0);
+    console.log(`Player ${i + 1} points: ${playerPoints[i]}`);
+    amountleft[i] = 501 - playerPoints[i];
+    console.log(`Player ${i + 1} amount left: ${amountleft[i]}`);
+    //Päivitetään näytölle jäljellä olevat pisteet
+    switch (i) {
+      case 0: document.getElementById("player1pointsLeft").innerText = `points left: ${amountleft[i]}`; break;
+      case 1: document.getElementById("player2pointsLeft").innerText = `points left: ${amountleft[i]}`; break;
+      case 2: document.getElementById("player3pointsLeft").innerText = `points left: ${amountleft[i]}`; break;
+      case 3: document.getElementById("player4pointsLeft").innerText = `points left: ${amountleft[i]}`; break;
+    }
+
+    //Jos pelaaja pääsee 0:n, hän voittaa legin
+    if (amountleft[i] === 0) {
+      playerLegsWon[i] += 1;
+      amountleft.splice(i,0, 501);
+      players[i] = []; //Tyhjennetään pelaajan piste lista seuraavaa legiä varten
+      alert(`Player ${i + 1} wins the leg! Total legs won: ${playerLegsWon[i]}`);
+      //Päivitetään näytölle voitettujen legien määrä
+      switch (i) {
+        case 0: player1wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
+        case 1: player2wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
+        case 2: player3wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
+        case 3: player4wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
+      }
+    }
+  }
+
+}
+
 function addToScore(e) {
   console.log(scoreInput.value);
   let player = decidePlayer(players);
@@ -95,6 +139,8 @@ function addToScore(e) {
   player.unshift(scoreInput.value);
   let newestTenPoints = player.slice(0, 11);
   header.classList.add("activeBorder");
+  console.log(header);
+  playerPointsUpdate();
   header.classList.remove("noBorder");
   let otherHeaders = playerHeaders.filter((h) => h !== header);
 
@@ -109,7 +155,7 @@ function addToScore(e) {
       : "";
   }
   turns++;
-  console.log(players);
+  console.log(players, "T urns:", newestTenPoints);
 }
 
 function decidePlayer(content) {
