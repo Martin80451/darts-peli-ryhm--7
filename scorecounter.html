@@ -20,20 +20,22 @@
     <section>
       <h2>Darts Points</h2>
       <h3>Points:</h3>
-      <form id="newScoreInput">
+      <div id="newScoreInput">
         <input
-          type="number"
+          type="text"
+          inputmode="numeric"
           id="score"
           name="score"
           placeholder="0"
           min="1"
           max="180"
         />
-      </form>
+      </div>
       <h5>Score Counter</h5>
         <!--Asetetaan taulukot horisontaalisesti-->
       <div class="scoreboard">
         <div id="player1Name">Player 1 name here</div>
+        <div id="player1LegWins">Number of legs won here</div>
         <table id="player1Score">
           <tr>
             <td></td><td></td><td></td><td></td><td></td>
@@ -43,6 +45,7 @@
       </div>
       <div class="scoreboard">
         <div id="player2Name">Player 2 name here</div>
+        <div id="player1LegWins">Number of legs won here</div>
         <table id="player2Score">
           <tr>
             <td></td><td></td><td></td><td></td><td></td>
@@ -52,6 +55,7 @@
       </div>
       <div class="scoreboard">
         <div id="player3Name">Player 3 name here</div>
+        <div id="player1LegWins">Number of legs won here</div>
         <table id="player3Score">
           <tr>
             <td></td><td></td><td></td><td></td><td></td>
@@ -61,6 +65,7 @@
       </div>
       <div class="scoreboard">
         <div id="player4Name">Player 4 name here</div>
+        <div id="player1LegWins">Number of legs won here</div>
         <table id="player4Score">
           <tr>
             <td></td><td></td><td></td><td></td><td></td>

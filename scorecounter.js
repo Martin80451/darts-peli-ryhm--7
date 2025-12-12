@@ -1,7 +1,31 @@
 
+function getPlayerNames() {
+    var playerNames = ["Thomas", "Elisa", "Martin", "Eetu"]; //TODO Otetaan nimet main/aloitus sivulta...
+    return playerNames;
+}
+
+
 function getPlayerCount() {
     var playerCount = 4; //TODO oletuksena 2 pelaajaa. Tämän arvon olisi tarkoitus saada main/aloitus sivulta..
     return playerCount;
+}
+
+// setupPlayerNames, jonka periaate on tulkita aktiivisten pelaajien määrä ja lisätä heidän nimensä nimikenttiin
+function setupPlayerNames() {
+    //Hae pelaajien nimet ja lyhennä ne alkukirjaimiksi
+    const count = getPlayerCount();
+    const names = getPlayerNames();
+    const initials = names.map(name => name[0].toUpperCase());
+
+    //Aseta pelaajien nimet näkyviin
+    player1Header.innerText = initials[0];
+    player2Header.innerText = initials[1];
+    if (count >= 3) {
+        player3Header.innerText = initials[2];
+    }
+    if (count === 4) {
+        player4Header.innerText = initials[3];
+    }
 }
 
 // givePlayersScoreboard jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat pistetaulukot
@@ -21,6 +45,24 @@ for (let i = 0; i < playerCount; i++) {
   players.push([]);
 }
 const scoreInput = document.getElementById("score");
+//Ohittaa vanhan formin, subit toiminon. Uudessa ratkaisussa painetaan enteriä pisteen syötön jälkeen.
+scoreInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    if(scoreInput.value === "" || isNaN(scoreInput.value)){
+      alert("Syötä pistemäärä numerona.");
+      return;
+    }
+    
+    if(scoreInput.value <= 180){ //Maksimipistemäärä yhdellä heitto vuorolla on 180
+      addToScore();
+    }
+    else{
+      alert("Anettu pistemäärä ylittää heito vuoron maksimipistemäärän (180). Yritä uudelleen.");
+    }
+    
+  }
+});
+
 //Pelaajat 1 ja 2
 const player1Header = document.getElementById("player1Name");
 const player2Header = document.getElementById("player2Name");
@@ -31,6 +73,7 @@ const player3Header = document.getElementById("player3Name");
 const player4Header = document.getElementById("player4Name");
 const player3Table = document.getElementById("player3Score");
 const player4Table = document.getElementById("player4Score");
+setupPlayerNames();
 givePlayersScoreboard();
 
 //Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
@@ -67,7 +110,6 @@ function addToScore(e) {
   }
   turns++;
   console.log(players);
-  e.preventDefault();
 }
 
 function decidePlayer(content) {
@@ -83,5 +125,3 @@ function decidePlayer(content) {
   }
 }
 
-const form = document.getElementById("newScoreInput");
-form?.addEventListener("submit", addToScore);
