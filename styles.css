@@ -196,6 +196,7 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
 
 /* Pelaajien voittamat legit PLACEHOLDER*/
 #player1wins {
+  display: flex;
   width: 250px;
   margin: 0px 15px;
   padding: 10px;
@@ -203,6 +204,7 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
   background-color: lightblue;
 }
 #player2wins {
+  display: flex;
   width: 250px;
   margin: 0px 15px;
   padding: 10px;
@@ -210,6 +212,7 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
   background-color: lightgreen;
 }
 #player3wins {
+  display: flex;
   width: 250px;
   margin: 0px 15px;
   padding: 10px;
@@ -217,6 +220,7 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
   background-color: rgb(235, 144, 238);
 }
 #player4wins {
+  display: flex;
   width: 250px;
   margin: 0px 15px;
   padding: 10px;
