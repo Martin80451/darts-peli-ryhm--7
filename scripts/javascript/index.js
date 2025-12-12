@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let names = [];
   let playerNamesInGame;
+  let selectedGameType = null;
+  let selectedSetSize = null;
   let randomizer = false;
   document.getElementById("randomizePlayersCheck").checked
     ? (randomizer = true)
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function closePopup() {
     document.getElementById("overlay").style.display = "none";
+    window.location.href = "scorecounter.html";
   }
 
   document
@@ -70,6 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const numPlayers = numPlayersInput.value;
     const gameType = gameTypeSelect.value;
     const setSize = setSizeInput.value;
+
+    // Tallentaa valitut asetukset muuttujiin
+    selectedGameType = gameType;
+    selectedSetSize = setSize;
 
     const p1name = p1Input.value.trim();
     const p2name = p2Input.value.trim();
@@ -114,15 +121,33 @@ document.addEventListener("DOMContentLoaded", function () {
       popup.style.display = "none";
       const startingPlayer =
         playersInGame[Math.floor(Math.random() * playersInGame.length)];
+      // Tallentaa peliasetukset local storageen
+      const gameData = {
+        names: playerNamesInGame,
+        gameType: selectedGameType,
+        setSize: selectedSetSize,
+        startingPlayer: startingPlayer,
+      };
+      localStorage.setItem("gameData", JSON.stringify(gameData));
       showPopup(startingPlayer);
     } else {
-      //TODO: Muuta tämä osio siten, että se ohjaa pelaajan suoraan peliin ilman popupia.
+      // Jos randomizer on false, asettaa ensimmäisen pelaajan aloittajaksi
+      popup.style.display = "none";
+      const startingPlayer = playersInGame[0];
+      const gameData = {
+        names: playerNamesInGame,
+        gameType: selectedGameType,
+        setSize: selectedSetSize,
+        startingPlayer: startingPlayer,
+      };
+      localStorage.setItem("gameData", JSON.stringify(gameData));
+      window.location.href = "scorecounter.html";
     }
-    // window.location.href = "PelaajatJaKolikot/annaNimet.html";
   });
 
   closePopupBtn.addEventListener("click", function () {
     popup.style.display = "none";
+    
   });
 
   // sulkee popupin jos klikkaa sen ulkopuolelle

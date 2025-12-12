@@ -1,11 +1,19 @@
+const _storedGameRaw = localStorage.getItem('gameData');
+const _storedGameData = _storedGameRaw ? JSON.parse(_storedGameRaw) : null;
 
 function getPlayerNames() {
-    var playerNames = ["Thomas", "Elisa", "Martin", "Eetu"]; //TODO Otetaan nimet main/aloitus sivulta...
-    return playerNames;
+  if (_storedGameData && Array.isArray(_storedGameData.names) && _storedGameData.names.length > 0) {
+    return _storedGameData.names;
+  }
+  var playerNames = ["Thomas", "Elisa", "Martin", "Eetu"]; //TODO Otetaan nimet main/aloitus sivulta...
+  return playerNames;
 }
 function getPlayerCount() {
-    var playerCount = 3; //TODO oletuksena 2 pelaajaa. Tämän arvon olisi tarkoitus saada main/aloitus sivulta..
-    return playerCount;
+  if (_storedGameData && Array.isArray(_storedGameData.names)) {
+    return _storedGameData.names.length;
+  }
+  var playerCount = 2; // default arvo, jos ei löydy local storagesta
+  return playerCount;
 }
 // setupPlayerNames, jonka periaate on tulkita aktiivisten pelaajien määrä ja lisätä heidän nimensä nimikenttiin
 function setupPlayerNames() {
@@ -63,7 +71,7 @@ const scoreInput = document.getElementById("score");
 let playerPoints = [0, 0, 0, 0];
 let playerLegsWon = [0, 0, 0, 0];
 let amountleft = []; 
-gameMode(); //TODO: Muuta alkupisteet dynaamisesti aloitusnäytöltä
+gameMode(); 
 for (let i = 0; i < playerCount; i++) {
   amountleft.push(gameMode());
 }
@@ -87,24 +95,21 @@ const playerTables = allTables.slice(0, playerCount);
 console.log("Active player headers:", playerHeaders);
 console.log("Active player tables:", playerTables);
 let turns = 0;
+// Aseta aloitus pelaaja, jos on määritetty
+if (_storedGameData && _storedGameData.startingPlayer) {
+  turns = Number(_storedGameData.startingPlayer) - 1;
+}
 
 //-------------------PISTEIDEN JA LEGIEN KERÄYS JA NIIDEN TALLETUS NÄYTÖLLE---------------------------//
 
 //Aseta pelimuoto, pitkää(501) vai lyhyttä(301) peliä
 function gameMode(){
-  let short = true;  //TODO: Muuta alkupisteet dynaamisesti aloitusnäytöltä
-  let selectedMode;
-
-  let gamemodeShort = 9;
-  let gamemodeLong = 501;
-
-  if (short){
-    selectedMode = gamemodeShort;
+  // Hae local storagesta pelimoodi
+  if (_storedGameData && _storedGameData.gameType) {
+    return Number(_storedGameData.gameType);
   }
-  else{
-    selectedMode = gamemodeLong;
-  }
-  return selectedMode;
+  // default
+  return 301;
 }
 
 //Tarkista onko kukaan voittanut peliä
@@ -260,15 +265,20 @@ function decidePlayer(content) {
 }
 
 //PopUp randomaizer logiikka
-function showPopup(playerNum) {
+function showPopup() {
     const overlay = document.getElementById("overlay");
 
     //Nollaa pisteet button
     const resetScoresButton = document.getElementById("resetGame"); //<-------------------------------------NOLLAA PISTEET BUTTON
     resetScoresButton.addEventListener("click", () => {
       resetGame();
-      
+      closePopup();
     });
+    const returnMainmenuButton = document.getElementById("mainmenu"); //<-------------------------------------RETURN TO MAIN MENU BUTTON
+    returnMainmenuButton.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
     overlay.style.display = "flex";
 }
 

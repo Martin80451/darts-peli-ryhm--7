@@ -1,4 +1,3 @@
-<<<<<<< HEAD:css/styles.css
 body {
   font-family: "Roboto Condensed", sans-serif;
   display: flex;
@@ -215,7 +214,6 @@ label {
 #closePopupPlayerChosen:hover {
   background: #555;
 }
-=======
 body {
   font-family: "Roboto Condensed", sans-serif;
   display: flex;
@@ -505,4 +503,3 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
 .closePopup:hover {
   background: #555;
 }
->>>>>>> Score-ja-menu-merge:styles.css
