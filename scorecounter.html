@@ -19,6 +19,9 @@
   <body>
     <section>
       <h2>Darts Points</h2>
+      <div id ="GameSettings">
+          <button id="changeSettings" type="button">Change Settings</button>
+      </div>
       <h3>Points:</h3>
       <div id="newScoreInput">
         <input
@@ -77,7 +80,16 @@
           </tr>
         </table>
       </div>
-      <button id="resetGame" type="button">Reset Game</button>
+              <!-- POPUP -->
+    <div id="overlay" class="overlay">
+        <div class="popup">
+            <p class="popup-text">Asetukset</p>
+            <button id="resetGame" type="button">Reset Game</button> <!-----------------------------------------------------------Reset button-->
+            <button id = "mainmenu" type="button">Main Menu</button> <!-----------------------------------------------------------Main menu button-->
+            <button class="closePopup" onclick="closePopup()">Continue</button>
+        </div>
+    </div>
+      
       <script src="scorecounter.js"></script>
     </section>
   </body>

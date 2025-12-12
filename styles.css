@@ -179,7 +179,17 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
 }
 
 
-#resetGame {
+#resetGame { 
+  display: flex;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-width: 5px;
+  border-style: solid;
+}
+
+#mainmenu { 
   display: flex;
   margin: 20px auto;
   padding: 10px;
@@ -226,4 +236,54 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
   padding: 10px;
   text-align: center;
   background-color: rgb(238, 144, 144);
+}
+
+/* Popup backdrop */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup box */
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+  animation: popupIn 0.2s ease;
+}
+
+@keyframes popupIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.popup-image {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.popup-text {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.closePopup {
+  padding: 10px 20px;
+  border: none;
+  background: #333;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.closePopup:hover {
+  background: #555;
 }

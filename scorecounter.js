@@ -39,6 +39,11 @@ function givePlayersScoreboard() {
 
 //-------------------MUUTTUJAT JA ALUSTUKSET---------------------------//
 
+const openpopupButton = document.getElementById("changeSettings");
+openpopupButton.addEventListener("click", () => {
+  showPopup();
+});
+
 const playerCount = getPlayerCount();
 const players = [];
 for (let i = 0; i < playerCount; i++) {
@@ -70,12 +75,7 @@ const player4wins = document.getElementById("player4wins");
 setupPlayerNames();
 givePlayersScoreboard();
 
-//Nollaa pisteet button
-const resetScoresButton = document.getElementById("resetGame"); //<-------------------------------------NOLLAA PISTEET BUTTON
-resetScoresButton.addEventListener("click", () => {
-  resetGame();
-  
-});
+
 
 //Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
 const allPlayers = [player1Header, player2Header, player3Header, player4Header];
@@ -257,5 +257,22 @@ function decidePlayer(content) {
     case 3:
       return content[3];
   }
+}
+
+//PopUp randomaizer logiikka
+function showPopup(playerNum) {
+    const overlay = document.getElementById("overlay");
+
+    //Nollaa pisteet button
+    const resetScoresButton = document.getElementById("resetGame"); //<-------------------------------------NOLLAA PISTEET BUTTON
+    resetScoresButton.addEventListener("click", () => {
+      resetGame();
+      
+    });
+    overlay.style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("overlay").style.display = "none";
 }
 
