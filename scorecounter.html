@@ -16,23 +16,81 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-<body>
+  <body>
     <section>
-    <h2>Darts Points</h2>
-        <h3>Points:</h3>
-    <form id="newScoreInput">
-        <input type="number" id="score" name="score" placeholder="0" min="1" max="180"/>
-      </form>
+      <h2>Darts Points</h2>
+      <div id ="GameSettings">
+          <button id="changeSettings" type="button">Change Settings</button>
+      </div>
+      <h3>Points:</h3>
+      <div id="newScoreInput">
+        <input
+          type="text"
+          inputmode="numeric"
+          id="score"
+          name="score"
+          placeholder="0"
+          min="1"
+          max="180"
+        />
+      </div>
       <h5>Score Counter</h5>
+        <!--Asetetaan taulukot horisontaalisesti-->
       <div class="scoreboard">
-        <div class="player1Name">Player 1 name here</div>
-        <div class="player2Name">Player 2 name here</div>
+        <div id="player1Name">Player 1 name here</div>
+          <div id="player1wins">legs won:</div> <!--PLACEHOLDER, OSOITTAA PELAAJAN VOITTAMAT KIERROKSET/LEGIT-->
+        <table id="player1Score">
+          <tr>
+            <td id = "player1pointsLeft"></td> <!--PLACEHOLDER, OSOITTAA PELAAJAN JÄLJELLÄ OLEVAT PISTEET ENNEN 0:aa, EI CSS:ÄÄ TEHTY-->
+            <td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </table>
       </div>
-        <div class="scoreboard">
-        <div class="player1Score">Player 1 score here</div>
-        <div class="player2Score">Player 2 score here</div>
+      <div class="scoreboard">
+        <div id="player2Name">Player 2 name here</div>
+        <div id="player2wins">legs won:</div> <!--PLACEHOLDER, OSOITTAA PELAAJAN VOITTAMAT KIERROKSET/LEGIT-->
+        <table id="player2Score">
+          <tr>
+            <td id = "player2pointsLeft"></td> <!--PLACEHOLDER, OSOITTAA PELAAJAN JÄLJELLÄ OLEVAT PISTEET ENNEN 0:aa, EI CSS:ÄÄ TEHTY-->
+            <td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </table>
       </div>
-      <button id="resetGame" type="button">Reset Game</button>
-    <!-- <script src="scorecounter.js"></script>    -->
-</section>
-</body>
+      <div class="scoreboard">
+        <div id="player3Name">Player 3 name here</div>
+        <div id="player3wins">legs won:</div> <!--PLACEHOLDER, OSOITTAA PELAAJAN VOITTAMAT KIERROKSET/LEGIT-->
+        <table id="player3Score">
+          <tr>
+            <td id = "player3pointsLeft"></td> <!--PLACEHOLDER, OSOITTAA PELAAJAN JÄLJELLÄ OLEVAT PISTEET ENNEN 0:aa, EI CSS:ÄÄ TEHTY-->
+            <td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </table>
+      </div>
+      <div class="scoreboard">
+        <div id="player4Name">Player 4 name here</div>
+        <div id="player4wins">legs won:</div> <!--PLACEHOLDER, OSOITTAA PELAAJAN VOITTAMAT KIERROKSET/LEGIT-->
+        <table id="player4Score">
+          <tr>
+            <td id = "player4pointsLeft"></td> <!--PLACEHOLDER, OSOITTAA PELAAJAN JÄLJELLÄ OLEVAT PISTEET ENNEN 0:aa, EI CSS:ÄÄ TEHTY-->
+            <td></td><td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </table>
+      </div>
+              <!-- POPUP -->
+    <div id="overlay" class="overlay">
+        <div class="popup">
+            <p class="popup-text">Asetukset</p>
+            <button id="resetGame" type="button">Reset Game</button> <!-----------------------------------------------------------Reset button-->
+            <button id = "mainmenu" type="button">Main Menu</button> <!-----------------------------------------------------------Main menu button-->
+            <button class="closePopup" onclick="closePopup()">Continue</button>
+        </div>
+    </div>
+      
+      <script src="scorecounter.js"></script>
+    </section>
+  </body>
+</html>
