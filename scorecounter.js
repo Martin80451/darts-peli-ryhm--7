@@ -37,7 +37,6 @@ function givePlayersScoreboard() {
     player3Table.style.display = count < 3 ? "none" : "flex";
 }
 
-
 //-------------------MUUTTUJAT JA ALUSTUKSET---------------------------//
 
 const playerCount = getPlayerCount();
@@ -73,8 +72,9 @@ givePlayersScoreboard();
 
 //Nollaa pisteet button
 const resetScoresButton = document.getElementById("resetGame"); //<-------------------------------------NOLLAA PISTEET BUTTON
- resetScoresButton.addEventListener("click", () => {
+resetScoresButton.addEventListener("click", () => {
   resetGame();
+  
 });
 
 //Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
@@ -95,7 +95,7 @@ function gameMode(){
   let short = true;  //TODO: Muuta alkupisteet dynaamisesti aloitusnäytöltä
   let selectedMode;
 
-  let gamemodeShort = 1;
+  let gamemodeShort = 9;
   let gamemodeLong = 501;
 
   if (short){
@@ -106,7 +106,6 @@ function gameMode(){
   }
   return selectedMode;
 }
-
 
 //Tarkista onko kukaan voittanut peliä
 function winnerCheck() { //TODO: kokeile tuleeko pelaaja nimet oikein erien ja pelin loputtua
@@ -172,29 +171,21 @@ function resetGame() {
     playerPoints[i] = 0;
     playerLegsWon[i] = 0;
     amountleft[i] = gameLenght;
-    //Päivitetään näytölle
-    switch (i) {
-      case 0: 
-        document.getElementById("player1pointsLeft").innerText = `points left: ${amountleft[i]}`;
-        player1wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-        break;
-      case 1: 
-        document.getElementById("player2pointsLeft").innerText = `points left: ${amountleft[i]}`;
-        player2wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-        break;
-      case 2: 
-        document.getElementById("player3pointsLeft").innerText = `points left: ${amountleft[i]}`;
-        player3wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-        break;
-      case 3: 
-        document.getElementById("player4pointsLeft").innerText = `points left: ${amountleft[i]}`;
-        player4wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-        break;
+    //Päivitetään näytölle 
+      document.getElementById("player1pointsLeft").innerText = `points left: ${amountleft[i]}`;
+      player1wins.innerText = `legs won: ${playerLegsWon[i]}`; 
+      document.getElementById("player2pointsLeft").innerText = `points left: ${amountleft[i]}`;
+      player2wins.innerText = `legs won: ${playerLegsWon[i]}`; 
+      document.getElementById("player3pointsLeft").innerText = `points left: ${amountleft[i]}`;
+      player3wins.innerText = `legs won: ${playerLegsWon[i]}`; 
+      document.getElementById("player4pointsLeft").innerText = `points left: ${amountleft[i]}`;
+      player4wins.innerText = `legs won: ${playerLegsWon[i]}`; 
+        
     }
-  }
+  
   //Tyhjennetään pistetaulukot
   for (let i = 0; i < playerCount; i++) {
-    let table = decidePlayer(playerTables);
+    let table = playerTables[i];
     for (let j = 0; j < table.rows[0].cells.length; j++) {
       table.rows[0].cells[j].innerHTML = "";
     }
@@ -223,28 +214,37 @@ scoreInput.addEventListener('keydown', (e) => {
 function addToScore(e) {
   console.log(scoreInput.value);
   let player = decidePlayer(players);
-  let header = decidePlayer(playerHeaders);
+  //let header = decidePlayer(playerHeaders);
   let table = decidePlayer(playerTables);
   player.unshift(scoreInput.value);
   let newestTenPoints = player.slice(0, 11);
-  header.classList.add("activeBorder");
-  playerPointsUpdate();
-  header.classList.remove("noBorder");
-  let otherHeaders = playerHeaders.filter((h) => h !== header);
 
-  for (let i = 0; i < otherHeaders.length; i++) {
-    otherHeaders[i].classList.remove("activeBorder");
-    otherHeaders[i].classList.add("noBorder");
-  }
   //Lisätään pisteet taulukkoon horisontaalisesti
   for (let j = 0; j < table.rows[0].cells.length; j++) {
     table.rows[0].cells[j].innerHTML = newestTenPoints[j]
       ? newestTenPoints[j]
       : "";
   }
+
+  playerPointsUpdate();
   turns++;
-  console.log(players, "T urns:", newestTenPoints);
+  
+  updatePlayerHighlight();
 }
+
+//Uusi funktio pelaajan vuoro highlighteille
+function updatePlayerHighlight() {
+  let header = decidePlayer(playerHeaders);
+  header.classList.add("activeBorder");
+  header.classList.remove("noBorder");
+ let otherHeaders = playerHeaders.filter((h) => h !== header);
+  //Poistetaan vanha highlight muilta pelaajilta
+  for (let i = 0; i < otherHeaders.length; i++) {
+    otherHeaders[i].classList.remove("activeBorder");
+    otherHeaders[i].classList.add("noBorder");
+  }
+}
+
 
 function decidePlayer(content) {
   switch (turns % playerCount) {
