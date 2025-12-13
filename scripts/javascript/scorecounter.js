@@ -1,8 +1,12 @@
-const _storedGameRaw = localStorage.getItem('gameData');
+const _storedGameRaw = localStorage.getItem("gameData");
 const _storedGameData = _storedGameRaw ? JSON.parse(_storedGameRaw) : null;
 
 function getPlayerNames() {
-  if (_storedGameData && Array.isArray(_storedGameData.names) && _storedGameData.names.length > 0) {
+  if (
+    _storedGameData &&
+    Array.isArray(_storedGameData.names) &&
+    _storedGameData.names.length > 0
+  ) {
     return _storedGameData.names;
   }
   var playerNames = ["Thomas", "Elisa", "Martin", "Eetu"]; //TODO Otetaan nimet main/aloitus sivulta...
@@ -15,34 +19,40 @@ function getPlayerCount() {
   var playerCount = 2; // default arvo, jos ei löydy local storagesta
   return playerCount;
 }
+function getSetCount() {
+  if (_storedGameData && _storedGameData.setSize) {
+    return Number(_storedGameData.setSize);
+  }
+  return 3; // default arvo, jos ei löydy local storagesta
+}
 // setupPlayerNames, jonka periaate on tulkita aktiivisten pelaajien määrä ja lisätä heidän nimensä nimikenttiin
 function setupPlayerNames() {
-    //Hae pelaajien nimet ja lyhennä ne alkukirjaimiksi
-    const count = getPlayerCount();
-    const names = getPlayerNames();
-    const initials = names.map(name => name[0].toUpperCase());
+  //Hae pelaajien nimet ja lyhennä ne alkukirjaimiksi
+  const count = getPlayerCount();
+  const names = getPlayerNames();
+  const initials = names.map((name) => name[0].toUpperCase());
 
-    //Aseta pelaajien nimet näkyviin
-    player1Header.innerText = initials[0];
-    player2Header.innerText = initials[1];
-    if (count >= 3) {
-        player3Header.innerText = initials[2];
-    }
-    if (count === 4) {
-        player4Header.innerText = initials[3];
-    }
+  //Aseta pelaajien nimet näkyviin
+  player1Header.innerText = initials[0];
+  player2Header.innerText = initials[1];
+  if (count >= 3) {
+    player3Header.innerText = initials[2];
+  }
+  if (count === 4) {
+    player4Header.innerText = initials[3];
+  }
 }
 // givePlayersScoreboard jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat pistetaulukot
 function givePlayersScoreboard() {
-    const count = getPlayerCount();
-    //piilota pelaajien nimiet
-    player3Header.hidden = count < 3;
-    player4Header.hidden = count < 4;
-    player3wins.style.display = count < 3 ? "none" : "flex";
-    player4wins.style.display = count < 4 ? "none" : "flex";
-    //piilota pelaajien pistetaulukot
-    player4Table.style.display = count < 4 ? "none" : "flex";
-    player3Table.style.display = count < 3 ? "none" : "flex";
+  const count = getPlayerCount();
+  //piilota pelaajien nimiet
+  player3Header.hidden = count < 3;
+  player4Header.hidden = count < 4;
+  player3wins.style.display = count < 3 ? "none" : "flex";
+  player4wins.style.display = count < 4 ? "none" : "flex";
+  //piilota pelaajien pistetaulukot
+  player4Table.style.display = count < 4 ? "none" : "flex";
+  player3Table.style.display = count < 3 ? "none" : "flex";
 }
 
 //-------------------MUUTTUJAT JA ALUSTUKSET---------------------------//
@@ -70,10 +80,10 @@ const player4Table = document.getElementById("player4Score");
 const scoreInput = document.getElementById("score");
 let playerPoints = [0, 0, 0, 0];
 let playerLegsWon = [0, 0, 0, 0];
-let amountleft = []; 
-gameMode(); 
+let amountleft = [];
+const gameType = gameMode();
 for (let i = 0; i < playerCount; i++) {
-  amountleft.push(gameMode());
+  amountleft.push(gameType);
 }
 //Pelaajien pistemäärien päivitys
 const player1wins = document.getElementById("player1wins");
@@ -82,8 +92,6 @@ const player3wins = document.getElementById("player3wins");
 const player4wins = document.getElementById("player4wins");
 setupPlayerNames();
 givePlayersScoreboard();
-
-
 
 //Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
 const allPlayers = [player1Header, player2Header, player3Header, player4Header];
@@ -103,7 +111,7 @@ if (_storedGameData && _storedGameData.startingPlayer) {
 //-------------------PISTEIDEN JA LEGIEN KERÄYS JA NIIDEN TALLETUS NÄYTÖLLE---------------------------//
 
 //Aseta pelimuoto, pitkää(501) vai lyhyttä(301) peliä
-function gameMode(){
+function gameMode() {
   // Hae local storagesta pelimoodi
   if (_storedGameData && _storedGameData.gameType) {
     return Number(_storedGameData.gameType);
@@ -113,10 +121,13 @@ function gameMode(){
 }
 
 //Tarkista onko kukaan voittanut peliä
-function winnerCheck() { //TODO: kokeile tuleeko pelaaja nimet oikein erien ja pelin loputtua
+function winnerCheck() {
+  //TODO: kokeile tuleeko pelaaja nimet oikein erien ja pelin loputtua
   const names = getPlayerNames();
+  const sets = getSetCount();
   for (let i = 0; i < playerCount; i++) {
-    if (playerLegsWon[i] >= 3) { //TODO: Muuta voittoon tarvittavien legien määrä dynaamisesti aloitusnäytöltä
+    if (playerLegsWon[i] >= 3) {
+      //TODO: Muuta voittoon tarvittavien legien määrä dynaamisesti aloitusnäytöltä
       alert(`Player: ${names[i]} wins the game!`);
       resetGame();
     }
@@ -124,55 +135,75 @@ function winnerCheck() { //TODO: kokeile tuleeko pelaaja nimet oikein erien ja p
 }
 //Pelaajien pistemäärät ja jäljellä olevat pisteet
 function playerPointsUpdate() {
-  const gameLenght = gameMode();
+  const gameLength = gameMode();
   const names = getPlayerNames();
   //Lasketaan pelaajien pistemäärät ja vähennetään ne aloituspisteistä.
   for (let i = 0; i < playerCount; i++) {
-    let poinits = players[i].reduce((a, b) => Number(a) + Number(b), 0); 
-    playerPoints[i] = poinits;
-    
+    let points = players[i].reduce((a, b) => Number(a) + Number(b), 0);
+    playerPoints[i] = points;
+
     //Jos pelaajan pisteet menevät miinukselle
-    if (playerPoints[i] > gameLenght) {
-      alert(`Player: ${names[i]} has exceeded the score! Score reset to previous amount.`);
+    if (playerPoints[i] > gameLength) {
+      alert(
+        `Player: ${names[i]} has exceeded the score! Score reset to previous amount.`
+      );
       players[i].shift();
       //Päivitetään pelaajan pisteet uudelleen
-      let poinits = players[i].reduce((a, b) => Number(a) + Number(b), 0); 
-      playerPoints[i] = poinits;
+      let points = players[i].reduce((a, b) => Number(a) + Number(b), 0);
+      playerPoints[i] = points;
       continue;
     }
 
     console.log(`Player ${i + 1} points: ${playerPoints[i]}`);
-    amountleft[i] = gameLenght - playerPoints[i];
+    amountleft[i] = gameLength - playerPoints[i];
     console.log(`Player ${i + 1} amount left: ${amountleft[i]}`);
     //Päivitetään näytölle jäljellä olevat pisteet
     switch (i) {
-      case 0: 
-      document.getElementById("player1pointsLeft").innerText = `points left: ${amountleft[i]}`; 
-      break;
-      case 1: 
-      document.getElementById("player2pointsLeft").innerText = `points left: ${amountleft[i]}`; 
-      break;
-      case 2: 
-      document.getElementById("player3pointsLeft").innerText = `points left: ${amountleft[i]}`; 
-      break;
-      case 3: 
-      document.getElementById("player4pointsLeft").innerText = `points left: ${amountleft[i]}`; 
-      break;
+      case 0:
+        document.getElementById(
+          "player1pointsLeft"
+        ).innerText = `points left: ${amountleft[i]}`;
+        break;
+      case 1:
+        document.getElementById(
+          "player2pointsLeft"
+        ).innerText = `points left: ${amountleft[i]}`;
+        break;
+      case 2:
+        document.getElementById(
+          "player3pointsLeft"
+        ).innerText = `points left: ${amountleft[i]}`;
+        break;
+      case 3:
+        document.getElementById(
+          "player4pointsLeft"
+        ).innerText = `points left: ${amountleft[i]}`;
+        break;
     }
 
     //Jos pelaaja pääsee 0:n, hän voittaa legin
     if (amountleft[i] === 0) {
       playerLegsWon[i] += 1;
-      amountleft.splice(i,0, gameLenght);
+      amountleft.splice(i, 0, gameLength);
       players[i] = []; //Tyhjennetään pelaajan piste lista seuraavaa legiä varten
       winnerCheck(); //Tarkistetaan onko peli voitettu
-      alert(`Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`);
+      alert(
+        `Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`
+      );
       //Päivitetään näytölle voitettujen legien määrä
       switch (i) {
-        case 0: player1wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
-        case 1: player2wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
-        case 2: player3wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
-        case 3: player4wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
+        case 0:
+          player1wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          break;
+        case 1:
+          player2wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          break;
+        case 2:
+          player3wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          break;
+        case 3:
+          player4wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          break;
       }
     }
   }
@@ -182,24 +213,31 @@ function playerPointsUpdate() {
 //Nollaa peli
 function resetGame() {
   //Nollaa kaikki pelaajien pisteet ja legit
-  let gameLenght = gameMode();
+  let gameLength = gameMode();
   for (let i = 0; i < playerCount; i++) {
     players[i] = [];
     playerPoints[i] = 0;
     playerLegsWon[i] = 0;
-    amountleft[i] = gameLenght;
-    //Päivitetään näytölle 
-      document.getElementById("player1pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player1wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-      document.getElementById("player2pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player2wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-      document.getElementById("player3pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player3wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-      document.getElementById("player4pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player4wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-        
-    }
-  
+    amountleft[i] = gameLength;
+    //Päivitetään näytölle
+    document.getElementById(
+      "player1pointsLeft"
+    ).innerText = `points left: ${amountleft[i]}`;
+    player1wins.innerText = `legs won: ${playerLegsWon[i]}`;
+    document.getElementById(
+      "player2pointsLeft"
+    ).innerText = `points left: ${amountleft[i]}`;
+    player2wins.innerText = `legs won: ${playerLegsWon[i]}`;
+    document.getElementById(
+      "player3pointsLeft"
+    ).innerText = `points left: ${amountleft[i]}`;
+    player3wins.innerText = `legs won: ${playerLegsWon[i]}`;
+    document.getElementById(
+      "player4pointsLeft"
+    ).innerText = `points left: ${amountleft[i]}`;
+    player4wins.innerText = `legs won: ${playerLegsWon[i]}`;
+  }
+
   //Tyhjennetään pistetaulukot
   for (let i = 0; i < playerCount; i++) {
     let table = playerTables[i];
@@ -209,20 +247,21 @@ function resetGame() {
   }
 }
 //Ohittaa vanhan formin, submit toiminon. Nyt painetaan enteriä pisteen syötön jälkeen.
-scoreInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    if(scoreInput.value === "" || isNaN(scoreInput.value)){
+scoreInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    if (scoreInput.value === "" || isNaN(scoreInput.value)) {
       alert("Syötä pistemäärä numerona.");
       return;
     }
 
-    if(scoreInput.value <= 180){ //Maksimipistemäärä yhdellä heitto vuorolla on 180
+    if (scoreInput.value <= 180) {
+      //Maksimipistemäärä yhdellä heitto vuorolla on 180
       addToScore();
+    } else {
+      alert(
+        "Anettu pistemäärä ylittää heito vuoron maksimipistemäärän (180). Yritä uudelleen."
+      );
     }
-    else{
-      alert("Anettu pistemäärä ylittää heito vuoron maksimipistemäärän (180). Yritä uudelleen.");
-    }
-    
   }
 });
 
@@ -245,7 +284,7 @@ function addToScore(e) {
 
   playerPointsUpdate();
   turns++;
-  
+
   updatePlayerHighlight();
 }
 
@@ -254,14 +293,13 @@ function updatePlayerHighlight() {
   let header = decidePlayer(playerHeaders);
   header.classList.add("activeBorder");
   header.classList.remove("noBorder");
- let otherHeaders = playerHeaders.filter((h) => h !== header);
+  let otherHeaders = playerHeaders.filter((h) => h !== header);
   //Poistetaan vanha highlight muilta pelaajilta
   for (let i = 0; i < otherHeaders.length; i++) {
     otherHeaders[i].classList.remove("activeBorder");
     otherHeaders[i].classList.add("noBorder");
   }
 }
-
 
 function decidePlayer(content) {
   switch (turns % playerCount) {
@@ -278,23 +316,22 @@ function decidePlayer(content) {
 
 //PopUp randomaizer logiikka
 function showPopup() {
-    const overlay = document.getElementById("overlay");
+  const overlay = document.getElementById("overlay");
 
-    //Nollaa pisteet button
-    const resetScoresButton = document.getElementById("resetGame"); //<-------------------------------------NOLLAA PISTEET BUTTON
-    resetScoresButton.addEventListener("click", () => {
-      resetGame();
-      closePopup();
-    });
-    const returnMainmenuButton = document.getElementById("mainmenu"); //<-------------------------------------RETURN TO MAIN MENU BUTTON
-    returnMainmenuButton.addEventListener("click", () => {
-      window.location.href = "index.html";
-    });
+  //Nollaa pisteet button
+  const resetScoresButton = document.getElementById("resetGame"); //<-------------------------------------NOLLAA PISTEET BUTTON
+  resetScoresButton.addEventListener("click", () => {
+    resetGame();
+    closePopup();
+  });
+  const returnMainmenuButton = document.getElementById("mainmenu"); //<-------------------------------------RETURN TO MAIN MENU BUTTON
+  returnMainmenuButton.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
 
-    overlay.style.display = "flex";
+  overlay.style.display = "flex";
 }
 
 function closePopup() {
-    document.getElementById("overlay").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
 }
-
