@@ -15,6 +15,24 @@ function getPlayerCount() {
   var playerCount = 4; // default arvo, jos ei löydy local storagesta
   return playerCount;
 }
+function getSetSize() {
+  if (_storedGameData && _storedGameData.setSize) {
+    return _storedGameData.setSize;
+  }
+  return 3; // default arvo, jos ei löydy local storagesta
+}
+function SetSize() {
+  currentSet.innerText = `Current set: ${currentSetCount}`;
+  console.log("Set size initialized:", currentSetCount);
+}
+function updateSetSize() {
+  currentSetCount--;
+  currentSet.innerText = `Current set: ${currentSetCount}`;
+  console.log("Updated set size:", currentSetCount);
+  if (currentSetCount === 0) {
+    winnerCheck();
+  }
+}
 // setupPlayerNames, jonka periaate on tulkita aktiivisten pelaajien määrä ja lisätä heidän nimensä nimikenttiin
 function setupPlayerNames() {
     //Hae pelaajien nimet ja lyhennä ne alkukirjaimiksi
@@ -23,6 +41,7 @@ function setupPlayerNames() {
     const initials = names.map(name => name[0].toUpperCase());
 
     //Aseta pelaajien nimet näkyviin, ensimmäisellä kirjaimella
+    /*
     player1Header.innerText = initials[0];
     player2Header.innerText = initials[1];
     if (count >= 3) {
@@ -31,9 +50,9 @@ function setupPlayerNames() {
     if (count === 4) {
         player4Header.innerText = initials[3];
     }
-    
+    */
     // Aseta pelaajien nimet näkyviin koko nimellä 
-    /*
+    
     player1Header.innerText = names[0];
     player2Header.innerText = names[1];
     if (count >= 3) {
@@ -42,7 +61,7 @@ function setupPlayerNames() {
     if (count === 4) {
         player4Header.innerText = names[3];
     }
-    */
+    
 }
 // givePlayersScoreboard jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat pistetaulukot
 function givePlayersScoreboard() {
@@ -94,7 +113,10 @@ const player3wins = document.getElementById("player3wins");
 const player4wins = document.getElementById("player4wins");
 setupPlayerNames();
 givePlayersScoreboard();
-
+//Aseta setin koko
+const currentSet = document.getElementById("set");
+let currentSetCount = getSetSize();
+SetSize();
 
 
 //Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
@@ -125,15 +147,24 @@ function gameMode(){
 }
 
 //Tarkista onko kukaan voittanut peliä
-function winnerCheck() { //TODO: kokeile tuleeko pelaaja nimet oikein erien ja pelin loputtua
+function winnerCheck() {
   const names = getPlayerNames();
-  for (let i = 0; i < playerCount; i++) {
-    if (playerLegsWon[i] >= 3) { //TODO: Muuta voittoon tarvittavien legien määrä dynaamisesti aloitusnäytöltä
-      alert(`Player: ${names[i]} wins the game!`);
-      resetGame();
+  let maxLegs = Math.max(...playerLegsWon);
+  let winners = [];
+  for (let i = 0; i < playerLegsWon.length; i++) {
+    if (playerLegsWon[i] === maxLegs) {
+      winners.push(names[i]);
     }
   }
+  if (winners.length === 1) {
+    alert(`Player: ${winners[0]} wins the game!`);
+  } else {
+    alert(`It's a tie between: ${winners.join(", ")}`);
+  }
+  resetGame();
 }
+
+
 //Pelaajien pistemäärät ja jäljellä olevat pisteet
 function playerPointsUpdate() {
   const gameLenght = gameMode();
@@ -177,8 +208,8 @@ function playerPointsUpdate() {
       playerLegsWon[i] += 1;
       amountleft.splice(i,0, gameLenght);
       players[i] = []; //Tyhjennetään pelaajan piste lista seuraavaa legiä varten
-      winnerCheck(); //Tarkistetaan onko peli voitettu
       alert(`Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`);
+      updateSetSize();
       //Päivitetään näytölle voitettujen legien määrä
       switch (i) {
         case 0: player1wins.innerText = `${playerLegsWon[i]}`; break;
@@ -200,6 +231,9 @@ function resetGame() {
     playerPoints[i] = 0;
     playerLegsWon[i] = 0;
     amountleft[i] = gameLenght;
+    currentSetCount = getSetSize();
+    currentSet.innerText = `Current set: ${currentSetCount}`;
+
     //Päivitetään näytölle ------------HUOM! Tekstit poistettu, jätetty vain numeroarvot -Elisa
       document.getElementById("player1pointsLeft").innerText = ` ${amountleft[i]}`;
       player1wins.innerText = ` ${playerLegsWon[i]}`; 
@@ -256,7 +290,6 @@ function addToScore(e) {
 
   playerPointsUpdate();
   turns++;
-  
   updatePlayerHighlight();
 }
 
