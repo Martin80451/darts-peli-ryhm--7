@@ -186,7 +186,6 @@ function playerPointsUpdate() {
       playerLegsWon[i] += 1;
       amountleft.splice(i, 0, gameLength);
       players[i] = []; //Tyhjennetään pelaajan piste lista seuraavaa legiä varten
-      winnerCheck(); //Tarkistetaan onko peli voitettu
       alert(
         `Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`
       );
@@ -205,6 +204,7 @@ function playerPointsUpdate() {
           player4wins.innerText = `legs won: ${playerLegsWon[i]}`;
           break;
       }
+      winnerCheck(); //Tarkistetaan onko peli voitettu
     }
   }
 }
