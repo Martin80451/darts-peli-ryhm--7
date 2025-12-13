@@ -126,7 +126,7 @@ function winnerCheck() {
   const names = getPlayerNames();
   const sets = getSetCount();
   for (let i = 0; i < playerCount; i++) {
-    if (playerLegsWon[i] >= 3) {
+    if (playerLegsWon[i] >= sets / 2 + 1) {
       //TODO: Muuta voittoon tarvittavien legien määrä dynaamisesti aloitusnäytöltä
       alert(`Player: ${names[i]} wins the game!`);
       resetGame();
