@@ -126,10 +126,10 @@ function winnerCheck() {
   const names = getPlayerNames();
   const sets = getSetCount();
   for (let i = 0; i < playerCount; i++) {
-    if (playerLegsWon[i] >= sets / 2 + 1) {
+    if (playerLegsWon[i] >= Math.floor(sets / 2) + 1) {
       //TODO: Muuta voittoon tarvittavien legien määrä dynaamisesti aloitusnäytöltä
       alert(`Player: ${names[i]} wins the game!`);
-      resetGame();
+      resetGame(false);
     }
   }
 }
@@ -184,8 +184,7 @@ function playerPointsUpdate() {
     //Jos pelaaja pääsee 0:n, hän voittaa legin
     if (amountleft[i] === 0) {
       playerLegsWon[i] += 1;
-      amountleft.splice(i, 0, gameLength);
-      players[i] = []; //Tyhjennetään pelaajan piste lista seuraavaa legiä varten
+      resetGame(true); //Nollaa peli, mutta säilyttää voitettujen legien määrän
       alert(
         `Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`
       );
@@ -211,13 +210,13 @@ function playerPointsUpdate() {
 
 //----------------Painikkeet----------------//
 //Nollaa peli
-function resetGame() {
+function resetGame(legWon) {
   //Nollaa kaikki pelaajien pisteet ja legit
   let gameLength = gameMode();
   for (let i = 0; i < playerCount; i++) {
     players[i] = [];
     playerPoints[i] = 0;
-    playerLegsWon[i] = 0;
+    playerLegsWon[i] = legWon ? playerLegsWon[i] : 0;
     amountleft[i] = gameLength;
     //Päivitetään näytölle
     document.getElementById(
@@ -321,7 +320,7 @@ function showPopup() {
   //Nollaa pisteet button
   const resetScoresButton = document.getElementById("resetGame"); //<-------------------------------------NOLLAA PISTEET BUTTON
   resetScoresButton.addEventListener("click", () => {
-    resetGame();
+    resetGame(false);
     closePopup();
   });
   const returnMainmenuButton = document.getElementById("mainmenu"); //<-------------------------------------RETURN TO MAIN MENU BUTTON
