@@ -1,5 +1,7 @@
-import { getPlayerNames, getSetCount } from "./modules/storage.mjs";
+import { getPlayerNames, getSetCount, gameMode, getPlayerCount } from "./storage.mjs";
+import { scoreInput, turns, playerPoints, players, amountleft, playerLegsWon, player1wins, player2wins, player3wins, player4wins, playerTables, playerHeaders, nextTurn } from "./variables.mjs";
 
+const playerCount = getPlayerCount();
 //Tarkista onko kukaan voittanut peliä
 function winnerCheck() {
   //TODO: kokeile tuleeko pelaaja nimet oikein erien ja pelin loputtua
@@ -124,7 +126,8 @@ function resetGame(legWon) {
     }
   }
 }
-function addToScore(e) {
+
+function addToScore() {
   console.log(scoreInput.value);
   let player = decidePlayer(players);
   //let header = decidePlayer(playerHeaders);
@@ -140,7 +143,7 @@ function addToScore(e) {
   }
 
   playerPointsUpdate();
-  turns++;
+  nextTurn();
 
   updatePlayerHighlight();
 }
@@ -171,4 +174,4 @@ function decidePlayer(content) {
   }
 }
 
-export { playerPointsUpdate, addToScore, updatePlayerHighlight, decidePlayer };
+export { addToScore, resetGame };

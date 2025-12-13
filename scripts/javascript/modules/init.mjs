@@ -1,4 +1,5 @@
 import { getPlayerCount, getPlayerNames } from "./storage.mjs";
+import { player1Header, player2Header, player3Header, player4Header, player3wins, player4wins, player3Table, player4Table } from "./variables.mjs";
 
 function setupPlayerNames() {
   //Hae pelaajien nimet ja lyhennä ne alkukirjaimiksi
@@ -30,14 +31,5 @@ function givePlayersScoreboard() {
   player3Table.style.display = count < 3 ? "none" : "flex";
 }
 
-//Aseta pelimuoto, pitkää(501) vai lyhyttä(301) peliä
-function gameMode() {
-  // Hae local storagesta pelimoodi
-  if (_storedGameData && _storedGameData.gameType) {
-    return Number(_storedGameData.gameType);
-  }
-  // default
-  return 301;
-}
 
-export { setupPlayerNames, givePlayersScoreboard, gameMode };
+export { setupPlayerNames, givePlayersScoreboard };

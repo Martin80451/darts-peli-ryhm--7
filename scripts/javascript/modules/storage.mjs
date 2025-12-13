@@ -1,3 +1,5 @@
+import { _storedGameData } from "./variables.mjs";
+
 function getPlayerNames() {
   if (
     _storedGameData &&
@@ -22,5 +24,14 @@ function getSetCount() {
   }
   return 3; // default arvo, jos ei löydy local storagesta
 }
+//Aseta pelimuoto, pitkää(501) vai lyhyttä(301) peliä
+function gameMode() {
+  // Hae local storagesta pelimoodi
+  if (_storedGameData && _storedGameData.gameType) {
+    return Number(_storedGameData.gameType);
+  }
+  // default
+  return 301;
+}
 
-export { getPlayerNames, getPlayerCount, getSetCount };
+export { getPlayerNames, getPlayerCount, getSetCount, gameMode };

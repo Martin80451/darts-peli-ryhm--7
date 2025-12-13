@@ -1,0 +1,32 @@
+import { setupPlayerNames, givePlayersScoreboard } from "./modules/init.mjs";
+import { scoreInput } from "./modules/variables.mjs";
+import { openpopupButton } from "./modules/popup.mjs";
+import { addToScore } from "./modules/state.mjs";
+
+setupPlayerNames();
+givePlayersScoreboard();
+
+openpopupButton.addEventListener("click", () => {
+  showPopup();
+});
+
+
+//Ohittaa vanhan formin, submit toiminon. Nyt painetaan enteriä pisteen syötön jälkeen.
+scoreInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    if (scoreInput.value === "" || isNaN(scoreInput.value)) {
+      alert("Syötä pistemäärä numerona.");
+      return;
+    }
+
+    if (scoreInput.value <= 180) {
+      //Maksimipistemäärä yhdellä heitto vuorolla on 180
+      addToScore();
+    } else {
+      alert(
+        "Annettu pistemäärä ylittää heito vuoron maksimipistemäärän (180). Yritä uudelleen."
+      );
+    }
+  }
+});
+
