@@ -1,5 +1,24 @@
-import { getPlayerNames, getSetCount, gameMode, getPlayerCount } from "./storage.mjs";
-import { scoreInput, turns, playerPoints, players, amountleft, playerLegsWon, player1wins, player2wins, player3wins, player4wins, playerTables, playerHeaders, nextTurn } from "./variables.mjs";
+import {
+  getPlayerNames,
+  getSetCount,
+  gameMode,
+  getPlayerCount,
+} from "./storage.mjs";
+import {
+  scoreInput,
+  turns,
+  playerPoints,
+  players,
+  amountleft,
+  playerLegsWon,
+  player1wins,
+  player2wins,
+  player3wins,
+  player4wins,
+  playerTables,
+  playerHeaders,
+  nextTurn,
+} from "./variables.mjs";
 
 const playerCount = getPlayerCount();
 //Tarkista onko kukaan voittanut peliä
@@ -99,24 +118,25 @@ function resetGame(legWon) {
     playerPoints[i] = 0;
     playerLegsWon[i] = legWon ? playerLegsWon[i] : 0;
     amountleft[i] = gameLength;
-    //Päivitetään näytölle
-    document.getElementById(
-      "player1pointsLeft"
-    ).innerText = `points left: ${amountleft[i]}`;
-    player1wins.innerText = `legs won: ${playerLegsWon[i]}`;
-    document.getElementById(
-      "player2pointsLeft"
-    ).innerText = `points left: ${amountleft[i]}`;
-    player2wins.innerText = `legs won: ${playerLegsWon[i]}`;
-    document.getElementById(
-      "player3pointsLeft"
-    ).innerText = `points left: ${amountleft[i]}`;
-    player3wins.innerText = `legs won: ${playerLegsWon[i]}`;
-    document.getElementById(
-      "player4pointsLeft"
-    ).innerText = `points left: ${amountleft[i]}`;
-    player4wins.innerText = `legs won: ${playerLegsWon[i]}`;
   }
+
+  //Päivitetään näytölle
+  document.getElementById(
+    "player1pointsLeft"
+  ).innerText = `points left: ${amountleft[0]}`;
+  player1wins.innerText = `legs won: ${playerLegsWon[0]}`;
+  document.getElementById(
+    "player2pointsLeft"
+  ).innerText = `points left: ${amountleft[1]}`;
+  player2wins.innerText = `legs won: ${playerLegsWon[1]}`;
+  document.getElementById(
+    "player3pointsLeft"
+  ).innerText = `points left: ${amountleft[2]}`;
+  player3wins.innerText = `legs won: ${playerLegsWon[2]}`;
+  document.getElementById(
+    "player4pointsLeft"
+  ).innerText = `points left: ${amountleft[3]}`;
+  player4wins.innerText = `legs won: ${playerLegsWon[3]}`;
 
   //Tyhjennetään pistetaulukot
   for (let i = 0; i < playerCount; i++) {

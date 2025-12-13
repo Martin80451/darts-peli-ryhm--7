@@ -1,6 +1,7 @@
 import { resetGame } from "./state.mjs";
 
 const openpopupButton = document.getElementById("changeSettings");
+const closePopupButton = document.getElementById("closeButton");
 
 function showPopup() {
   const overlay = document.getElementById("overlay");
@@ -22,4 +23,4 @@ function showPopup() {
 function closePopup() {
   document.getElementById("overlay").style.display = "none";
 }
-export { showPopup, closePopup, openpopupButton };
+export { showPopup, closePopup, openpopupButton, closePopupButton };

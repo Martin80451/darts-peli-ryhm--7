@@ -1,6 +1,11 @@
 import { setupPlayerNames, givePlayersScoreboard } from "./modules/init.mjs";
 import { scoreInput } from "./modules/variables.mjs";
-import { openpopupButton } from "./modules/popup.mjs";
+import {
+  openpopupButton,
+  showPopup,
+  closePopupButton,
+  closePopup,
+} from "./modules/popup.mjs";
 import { addToScore } from "./modules/state.mjs";
 
 setupPlayerNames();
@@ -10,6 +15,9 @@ openpopupButton.addEventListener("click", () => {
   showPopup();
 });
 
+closePopupButton.addEventListener("click", () => {
+  closePopup();
+});
 
 //Ohittaa vanhan formin, submit toiminon. Nyt painetaan enteriä pisteen syötön jälkeen.
 scoreInput.addEventListener("keydown", (e) => {
@@ -29,4 +37,3 @@ scoreInput.addEventListener("keydown", (e) => {
     }
   }
 });
-
