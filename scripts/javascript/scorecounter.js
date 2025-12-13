@@ -20,7 +20,7 @@ function setupPlayerNames() {
     //Hae pelaajien nimet ja lyhennä ne alkukirjaimiksi
     const count = getPlayerCount();
     const names = getPlayerNames();
-    const initials = names.map(name => name[0].toUpperCase().length = 3);
+    const initials = names.map(name => name[0].toUpperCase());
 
     //Aseta pelaajien nimet näkyviin, ensimmäisellä kirjaimella
     player1Header.innerText = initials[0];
