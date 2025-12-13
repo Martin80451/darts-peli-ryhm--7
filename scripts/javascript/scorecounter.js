@@ -22,7 +22,7 @@ function setupPlayerNames() {
     const names = getPlayerNames();
     const initials = names.map(name => name[0].toUpperCase());
 
-    //Aseta pelaajien nimet näkyviin
+    //Aseta pelaajien nimet näkyviin, ensimmäisellä kirjaimella
     player1Header.innerText = initials[0];
     player2Header.innerText = initials[1];
     if (count >= 3) {
@@ -31,6 +31,18 @@ function setupPlayerNames() {
     if (count === 4) {
         player4Header.innerText = initials[3];
     }
+    
+    // Aseta pelaajien nimet näkyviin koko nimellä 
+    /*
+    player1Header.innerText = names[0];
+    player2Header.innerText = names[1];
+    if (count >= 3) {
+        player3Header.innerText = names[2];
+    }
+    if (count === 4) {
+        player4Header.innerText = names[3];
+    }
+    */
 }
 // givePlayersScoreboard jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat pistetaulukot
 function givePlayersScoreboard() {

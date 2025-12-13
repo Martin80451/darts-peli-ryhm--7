@@ -92,25 +92,36 @@ document.addEventListener("DOMContentLoaded", function () {
       .map((n) => (n ? n : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
       .filter((n) => n !== null);
 
-    // popupin sisältö
-    popupContent.innerHTML = `
-      <h2>Confirm Game Settings?</h2>
-      <p><strong>Number of Players:</strong> ${numPlayers}</p>
-      <p><strong>Player names: ${
-        playerNamesInGame.length == 2
-          ? playerNamesInGame.join(" & ")
-          : playerNamesInGame.join(", ")
-      }</strong> </p>
-      <p><strong>Randomize First Player:</strong> ${
-        document.getElementById("randomizePlayersCheck").checked ? "Yes" : "No"
-      }</p>
-      <p><strong>Game Type:</strong> ${gameType}</p>
-      <p><strong>Set Size:</strong> ${setSize}</p>
-      <p>Are you sure you want to start the game with these settings?</p>
-    `;
+    // tarkistaa onko kaikkien aktiivisten pelaajien nimet annettu ja disabloi jatkopainikkeen
+    if (playerNamesInGame.length < numPlayers) {
+      popupContent.innerHTML = `
+        <h2>Alert:</h2>
+        <p style="color:red;"><strong>Please enter all active players' names before continuing.</strong></p>
+      `;
+      continuePopupBtn.disabled = true;
+      // jos nimet on annettu, näyttää vahvistusviestin ja enabloi jatkopainikkeen
+    } else {
+      popupContent.innerHTML = `
+        <h2>Confirm Game Settings?</h2>
+        <p><strong>Number of Players:</strong> ${numPlayers}</p>
+        <p><strong>Player names:</strong>
+        ${playerNamesInGame.length == 2
+            ? playerNamesInGame.join(" & ")
+            : playerNamesInGame.join(", ")
+        }</p>
+        <p><strong>Randomize First Player:</strong> ${
+          document.getElementById("randomizePlayersCheck").checked ? "Yes" : "No"
+        }</p>
+        <p><strong>Game Type:</strong> ${gameType}</p>
+        <p><strong>Set Size:</strong> ${setSize}</p>
+        <p>Are you sure you want to start the game with these settings?</p>
+      `;
+      continuePopupBtn.disabled = false;
+    }
     popup.style.display = "block";
-  });
+    });
 
+    
   // siirtyy scorecounter.html sivulle
   continuePopupBtn.addEventListener("click", function () {
     const playersInGame = names
