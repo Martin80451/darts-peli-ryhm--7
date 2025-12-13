@@ -128,7 +128,19 @@ function playerPointsUpdate() {
   const names = getPlayerNames();
   //Lasketaan pelaajien pistemäärät ja vähennetään ne aloituspisteistä.
   for (let i = 0; i < playerCount; i++) {
-    playerPoints[i] = players[i].reduce((a, b) => Number(a) + Number(b), 0);
+    let poinits = players[i].reduce((a, b) => Number(a) + Number(b), 0); 
+    playerPoints[i] = poinits;
+    
+    //Jos pelaajan pisteet menevät miinukselle
+    if (playerPoints[i] > gameLenght) {
+      alert(`Player: ${names[i]} has exceeded the score! Score reset to previous amount.`);
+      players[i].shift();
+      //Päivitetään pelaajan pisteet uudelleen
+      let poinits = players[i].reduce((a, b) => Number(a) + Number(b), 0); 
+      playerPoints[i] = poinits;
+      continue;
+    }
+
     console.log(`Player ${i + 1} points: ${playerPoints[i]}`);
     amountleft[i] = gameLenght - playerPoints[i];
     console.log(`Player ${i + 1} amount left: ${amountleft[i]}`);
