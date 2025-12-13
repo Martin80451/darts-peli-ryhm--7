@@ -12,7 +12,7 @@ function getPlayerCount() {
   if (_storedGameData && Array.isArray(_storedGameData.names)) {
     return _storedGameData.names.length;
   }
-  var playerCount = 2; // default arvo, jos ei löydy local storagesta
+  var playerCount = 4; // default arvo, jos ei löydy local storagesta
   return playerCount;
 }
 // setupPlayerNames, jonka periaate on tulkita aktiivisten pelaajien määrä ja lisätä heidän nimensä nimikenttiin
@@ -147,16 +147,16 @@ function playerPointsUpdate() {
     //Päivitetään näytölle jäljellä olevat pisteet
     switch (i) {
       case 0: 
-      document.getElementById("player1pointsLeft").innerText = `points left: ${amountleft[i]}`; 
+      document.getElementById("player1pointsLeft").innerText = `${amountleft[i]}`; 
       break;
       case 1: 
-      document.getElementById("player2pointsLeft").innerText = `points left: ${amountleft[i]}`; 
+      document.getElementById("player2pointsLeft").innerText = `${amountleft[i]}`; 
       break;
       case 2: 
-      document.getElementById("player3pointsLeft").innerText = `points left: ${amountleft[i]}`; 
+      document.getElementById("player3pointsLeft").innerText = `${amountleft[i]}`; 
       break;
       case 3: 
-      document.getElementById("player4pointsLeft").innerText = `points left: ${amountleft[i]}`; 
+      document.getElementById("player4pointsLeft").innerText = `${amountleft[i]}`; 
       break;
     }
 
@@ -169,10 +169,10 @@ function playerPointsUpdate() {
       alert(`Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`);
       //Päivitetään näytölle voitettujen legien määrä
       switch (i) {
-        case 0: player1wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
-        case 1: player2wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
-        case 2: player3wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
-        case 3: player4wins.innerText = `legs won: ${playerLegsWon[i]}`; break;
+        case 0: player1wins.innerText = `${playerLegsWon[i]}`; break;
+        case 1: player2wins.innerText = `${playerLegsWon[i]}`; break;
+        case 2: player3wins.innerText = `${playerLegsWon[i]}`; break;
+        case 3: player4wins.innerText = `${playerLegsWon[i]}`; break;
       }
     }
   }
@@ -188,16 +188,15 @@ function resetGame() {
     playerPoints[i] = 0;
     playerLegsWon[i] = 0;
     amountleft[i] = gameLenght;
-    //Päivitetään näytölle 
-      document.getElementById("player1pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player1wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-      document.getElementById("player2pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player2wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-      document.getElementById("player3pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player3wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-      document.getElementById("player4pointsLeft").innerText = `points left: ${amountleft[i]}`;
-      player4wins.innerText = `legs won: ${playerLegsWon[i]}`; 
-        
+    //Päivitetään näytölle ------------HUOM! Tekstit poistettu, jätetty vain numeroarvot -Elisa
+      document.getElementById("player1pointsLeft").innerText = ` ${amountleft[i]}`;
+      player1wins.innerText = ` ${playerLegsWon[i]}`; 
+      document.getElementById("player2pointsLeft").innerText = ` ${amountleft[i]}`;
+      player2wins.innerText = ` ${playerLegsWon[i]}`; 
+      document.getElementById("player3pointsLeft").innerText = ` ${amountleft[i]}`;
+      player3wins.innerText = ` ${playerLegsWon[i]}`; 
+      document.getElementById("player4pointsLeft").innerText = ` ${amountleft[i]}`;
+      player4wins.innerText = ` ${playerLegsWon[i]}`; 
     }
   
   //Tyhjennetään pistetaulukot
@@ -220,7 +219,7 @@ scoreInput.addEventListener('keydown', (e) => {
       addToScore();
     }
     else{
-      alert("Anettu pistemäärä ylittää heito vuoron maksimipistemäärän (180). Yritä uudelleen.");
+      alert("Annettu pistemäärä ylittää heittovuoron maksimipistemäärän (180). Yritä uudelleen.");
     }
     
   }
