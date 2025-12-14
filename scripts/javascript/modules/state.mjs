@@ -54,7 +54,7 @@ const playerCount = getPlayerCount();
 //Tarkista onko kukaan voittanut peliä
 function winnerCheck() {
   const names = getPlayerNames();
-  const sets = getSetCount();
+  const set = getSetCount();
   let maxLegs = Math.max(...playerLegsWon);
   let winners = [];
   for (let i = 0; i < playerLegsWon.length; i++) {
@@ -62,10 +62,10 @@ function winnerCheck() {
       winners.push(names[i]);
     }
   }
-  if (winners.length === 1 && maxLegs === Math.floor(sets / 2) + 1) {
+  if (winners.length === 1 && maxLegs === Math.floor(set / 2) + 1) {
     alert(`Player: ${winners[0]} wins the game!`);
     resetGame(false);
-  } else if (winners.length > 1) {
+  } else if (winners.length > 1 && maxLegs === Math.floor(set / 2)) {
     alert(`It's a tie between: ${winners.join(", ")}`);
     resetGame(false);
   } else {
@@ -235,11 +235,6 @@ function decidePlayer(content) {
     case 3:
       return content[3];
   }
-}
-
-function SetSize() {
-  currentSet.innerText = `Current set: ${currentSetCount}`;
-  console.log("Set size initialized:", currentSetCount);
 }
 
 export { addToScore, resetGame, giveNames, enforceValueLimits };
