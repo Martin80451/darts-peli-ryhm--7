@@ -6,13 +6,19 @@ import {
   playerSelect,
   continuePopupBtn,
   popup,
+  changeRandomizerValue,
 } from "./modules/variables.mjs";
 import { initializeGameSettings, startGame } from "./modules/init.mjs";
-import { giveNames } from "./modules/state.mjs";
+import { giveNames, enforceValueLimits } from "./modules/state.mjs";
 import { closePopupMain } from "./modules/popup.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
-  randomizePlayersCheck.checked ? (randomizer = true) : (randomizer = false);
+  randomizePlayersCheck.checked
+    ? changeRandomizerValue(true)
+    : changeRandomizerValue(false);
+  document
+    .getElementById("setSize")
+    .addEventListener("input", (e) => enforceValueLimits(e.target));
 
   // Kutsuu giveNames funktion aina kun pelaajamäärää muutetaan
   playerSelect.addEventListener("change", (e) => {

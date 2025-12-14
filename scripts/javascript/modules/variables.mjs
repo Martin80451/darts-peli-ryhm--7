@@ -79,8 +79,26 @@ if (_storedGameData && _storedGameData.startingPlayer) {
   turns = Number(_storedGameData.startingPlayer) - 1;
 }
 
+//-------------------MUUTTUJAN TILAN KÄSITTELIJÄFUNKTIOT---------------------------//
 function nextTurn() {
   turns += 1;
+}
+
+function changeRandomizerValue(value) {
+  randomizer = value;
+}
+
+function setSelectedGameType(value) {
+  selectedGameType = value;
+}
+function setSelectedSetSize(value) {
+  selectedSetSize = value;
+}
+function setNames(value) {
+  names = value;
+}
+function setPlayerNamesInGame(value) {
+  playerNamesInGame = value;
 }
 
 export {
@@ -130,4 +148,9 @@ export {
   randomizer,
   playerSelect,
   randomizePlayersCheck,
+  changeRandomizerValue,
+  setSelectedGameType,
+  setSelectedSetSize,
+  setNames,
+  setPlayerNamesInGame,
 };

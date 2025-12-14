@@ -22,6 +22,11 @@ import {
   randomizePlayersCheck,
   popup,
   names,
+  setSelectedGameType,
+  setSelectedSetSize,
+  changeRandomizerValue,
+  setNames,
+  setPlayerNamesInGame,
 } from "./variables.mjs";
 import { showPopupMain } from "./popup.mjs";
 
@@ -33,20 +38,22 @@ function initializeGameSettings() {
   const setSize = setSizeInput.value;
 
   // Tallentaa valitut asetukset muuttujiin
-  selectedGameType = gameType;
-  selectedSetSize = setSize;
+  setSelectedGameType(gameType);
+  setSelectedSetSize(setSize);
 
   const p1name = p1Input.value.trim();
   const p2name = p2Input.value.trim();
   const p3name = p3Input.hidden ? null : p3Input.value.trim();
   const p4name = p4Input.hidden ? null : p4Input.value.trim();
 
-  randomizePlayersCheck.checked ? (randomizer = true) : (randomizer = false);
+  randomizePlayersCheck.checked
+    ? changeRandomizerValue(true)
+    : changeRandomizerValue(false);
 
-  names = [p1name, p2name, p3name, p4name];
-  playerNamesInGame = names
-    .map((n) => (n ? n : null)) //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
-    .filter((n) => n !== null);
+  setNames([p1name, p2name, p3name, p4name]);
+  setPlayerNamesInGame(
+    names.map((n) => (n ? n : null)).filter((n) => n !== null)
+  ); //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
 
   // popupin sisältö
   popupContent.innerHTML = `

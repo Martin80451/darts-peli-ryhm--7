@@ -18,6 +18,8 @@ import {
   playerTables,
   playerHeaders,
   nextTurn,
+  p3Input,
+  p4Input,
 } from "./variables.mjs";
 
 //-------------------INDEX.JS STATE---------------------------//
@@ -26,11 +28,22 @@ function setPlayerCount(givenPlayerCount) {
   var playerCount = givenPlayerCount;
   return playerCount;
 }
-// giveNames jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat syötekentät
+/** giveNames jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat syötekentät */
 function giveNames(givenPlayerCount) {
   const count = setPlayerCount(givenPlayerCount);
   p3Input.hidden = count < 3;
   p4Input.hidden = count < 4;
+}
+/** Funktio joka varmistaa että input arvot pysyvät määritellyissä rajoissa */
+function enforceValueLimits(inputElement) {
+  console.log("Called " + inputElement);
+  const max = parseInt(inputElement.max);
+  const min = parseInt(inputElement.min);
+  if (parseInt(inputElement.value) > max) {
+    inputElement.value = max;
+  } else if (parseInt(inputElement.value) < min) {
+    inputElement.value = min;
+  }
 }
 //-------------------SCORECOUNTER.JS STATE---------------------------//
 
@@ -208,4 +221,4 @@ function decidePlayer(content) {
   }
 }
 
-export { addToScore, resetGame, giveNames };
+export { addToScore, resetGame, giveNames, enforceValueLimits };
