@@ -1,6 +1,32 @@
 import { getPlayerCount, gameMode } from "./storage.mjs";
 
+//-------------------INDEX.JS MUUTTUJAT---------------------------//
+const numPlayersInput = document.getElementById("numPlayers");
+const gameTypeSelect = document.getElementById("gameType");
+const setSizeInput = document.getElementById("setSize");
 
+const p1Input = document.getElementById("player1");
+const p2Input = document.getElementById("player2");
+const p3Input = document.getElementById("player3");
+const p4Input = document.getElementById("player4");
+
+const popup = document.getElementById("settingsPopupBackground");
+const popupContent = document.getElementById("popupContent");
+const continuePopupBtn = document.getElementById("continuePopup");
+const closePopupBtn = document.getElementById("closePopup");
+const closePopupPlayerChosen = document.getElementById(
+  "closePopupPlayerChosen"
+);
+
+let names = [];
+let playerNamesInGame;
+let selectedGameType = null;
+let selectedSetSize = null;
+let randomizer = false;
+const playerSelect = document.getElementById("numPlayers");
+const randomizePlayersCheck = document.getElementById("randomizePlayersCheck");
+
+//-------------------SCORECOUNTER.JS MUUTTUJAT---------------------------//
 const _storedGameRaw = localStorage.getItem("gameData");
 const _storedGameData = _storedGameRaw ? JSON.parse(_storedGameRaw) : null;
 //-------------------MUUTTUJAT JA ALUSTUKSET---------------------------//
@@ -38,7 +64,6 @@ for (let i = 0; i < playerCount; i++) {
   players.push([]);
 }
 
-
 const scoreInput = document.getElementById("score");
 const playerPoints = [0, 0, 0, 0];
 const playerLegsWon = [0, 0, 0, 0];
@@ -55,7 +80,54 @@ if (_storedGameData && _storedGameData.startingPlayer) {
 }
 
 function nextTurn() {
-    turns += 1;
+  turns += 1;
 }
 
-export {_storedGameRaw, _storedGameData, player1Header, player2Header, player3Header, player4Header, player1Table, player2Table, player3Table, player4Table, player1wins, player2wins, player3wins, player4wins, allPlayers, allTables, playerHeaders, playerTables, playerCount, players, scoreInput, playerPoints, playerLegsWon, amountleft, gameType, turns, nextTurn};
+export {
+  _storedGameRaw,
+  _storedGameData,
+  player1Header,
+  player2Header,
+  player3Header,
+  player4Header,
+  player1Table,
+  player2Table,
+  player3Table,
+  player4Table,
+  player1wins,
+  player2wins,
+  player3wins,
+  player4wins,
+  allPlayers,
+  allTables,
+  playerHeaders,
+  playerTables,
+  playerCount,
+  players,
+  scoreInput,
+  playerPoints,
+  playerLegsWon,
+  amountleft,
+  gameType,
+  turns,
+  nextTurn,
+  numPlayersInput,
+  gameTypeSelect,
+  setSizeInput,
+  p1Input,
+  p2Input,
+  p3Input,
+  p4Input,
+  popup,
+  popupContent,
+  continuePopupBtn,
+  closePopupBtn,
+  closePopupPlayerChosen,
+  names,
+  playerNamesInGame,
+  selectedGameType,
+  selectedSetSize,
+  randomizer,
+  playerSelect,
+  randomizePlayersCheck,
+};

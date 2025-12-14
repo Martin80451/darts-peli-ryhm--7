@@ -1,12 +1,12 @@
-import { setupPlayerNames, givePlayersScoreboard } from "./modules/init.mjs";
 import { scoreInput } from "./modules/variables.mjs";
+import { setupPlayerNames, givePlayersScoreboard } from "./modules/init.mjs";
+import { addToScore } from "./modules/state.mjs";
 import {
   openpopupButton,
   showPopup,
   closePopupButton,
   closePopup,
 } from "./modules/popup.mjs";
-import { addToScore } from "./modules/state.mjs";
 
 setupPlayerNames();
 givePlayersScoreboard();

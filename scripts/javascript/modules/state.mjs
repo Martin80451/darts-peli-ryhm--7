@@ -20,6 +20,20 @@ import {
   nextTurn,
 } from "./variables.mjs";
 
+//-------------------INDEX.JS STATE---------------------------//
+/**Asettaa pelaaja määrän numPlayers inputissa annetun arvon mukaan.*/
+function setPlayerCount(givenPlayerCount) {
+  var playerCount = givenPlayerCount;
+  return playerCount;
+}
+// giveNames jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat syötekentät
+function giveNames(givenPlayerCount) {
+  const count = setPlayerCount(givenPlayerCount);
+  p3Input.hidden = count < 3;
+  p4Input.hidden = count < 4;
+}
+//-------------------SCORECOUNTER.JS STATE---------------------------//
+
 const playerCount = getPlayerCount();
 //Tarkista onko kukaan voittanut peliä
 function winnerCheck() {
@@ -194,4 +208,4 @@ function decidePlayer(content) {
   }
 }
 
-export { addToScore, resetGame };
+export { addToScore, resetGame, giveNames };
