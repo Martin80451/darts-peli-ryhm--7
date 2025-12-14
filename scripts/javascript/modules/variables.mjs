@@ -47,17 +47,26 @@ const player2wins = document.getElementById("player2wins");
 const player3wins = document.getElementById("player3wins");
 const player4wins = document.getElementById("player4wins");
 
+const player1PointsLeft = document.getElementById("player1pointsLeft");
+const player2PointsLeft = document.getElementById("player2pointsLeft");
 const player3PointsLeft = document.getElementById("player3pointsLeft");
 const player4PointsLeft = document.getElementById("player4pointsLeft");
 
 //Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
 const allPlayers = [player1Header, player2Header, player3Header, player4Header];
+const allPlayerPointsLeft = [
+  player1PointsLeft,
+  player2PointsLeft,
+  player3PointsLeft,
+  player4PointsLeft,
+];
 const allTables = [player1Table, player2Table, player3Table, player4Table];
 
 const playerCount = getPlayerCount();
 
 //Lisätään aktiiviset pelaajat ja taulukot listoihin
 const playerHeaders = allPlayers.slice(0, playerCount);
+const playerPointsLeft = allPlayerPointsLeft.slice(0, playerCount);
 const playerTables = allTables.slice(0, playerCount);
 console.log("Active player headers:", playerHeaders);
 console.log("Active player tables:", playerTables);
@@ -169,6 +178,7 @@ export {
   currentSetCount,
   changeCurrentSetCount,
   decrementCurrentSetCount,
+  playerPointsLeft,
   player3PointsLeft,
   player4PointsLeft,
 };

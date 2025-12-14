@@ -1,7 +1,5 @@
-import { getPlayerCount, getPlayerNames } from "./storage.mjs";
+import { getPlayerCount, getPlayerNames, gameMode } from "./storage.mjs";
 import {
-  player1Header,
-  player2Header,
   player3Header,
   player4Header,
   player3wins,
@@ -29,6 +27,10 @@ import {
   setPlayerNamesInGame,
   player3PointsLeft,
   player4PointsLeft,
+  playerPointsLeft,
+  playerHeaders,
+  currentSet,
+  currentSetCount,
 } from "./variables.mjs";
 import { showPopupMain } from "./popup.mjs";
 
@@ -115,17 +117,14 @@ function setupPlayerNames() {
   //Hae pelaajien nimet ja lyhennä ne alkukirjaimiksi
   const count = getPlayerCount();
   const names = getPlayerNames();
-  const initials = names.map((name) => name[0].toUpperCase());
+  const gameLength = gameMode();
 
-  //Aseta pelaajien nimet näkyviin
-  player1Header.innerText = initials[0];
-  player2Header.innerText = initials[1];
-  if (count >= 3) {
-    player3Header.innerText = initials[2];
+  // Aseta pelaajien nimet näkyviin ja pisteet peli muodon mukaan
+  for (let i = 0; i < count; i++) {
+    playerHeaders[i].innerText = names[i];
+    playerPointsLeft[i].innerText = gameLength;
   }
-  if (count === 4) {
-    player4Header.innerText = initials[3];
-  }
+  currentSet.innerText = `Current set: ${currentSetCount}`;
 }
 
 // givePlayersScoreboard jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat pistetaulukot
