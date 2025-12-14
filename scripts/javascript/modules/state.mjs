@@ -23,6 +23,7 @@ import {
   currentSet,
   currentSetCount,
   changeCurrentSetCount,
+  decrementCurrentSetCount,
 } from "./variables.mjs";
 
 //-------------------INDEX.JS STATE---------------------------//
@@ -69,7 +70,7 @@ function winnerCheck() {
 }
 
 function updateSetSize() {
-  currentSetCount--;
+  decrementCurrentSetCount();
   currentSet.innerText = `Current set: ${currentSetCount}`;
   console.log("Updated set size:", currentSetCount);
   if (currentSetCount === 0) {

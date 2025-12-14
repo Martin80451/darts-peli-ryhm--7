@@ -106,6 +106,9 @@ function setPlayerNamesInGame(value) {
 function changeCurrentSetCount(value) {
   currentSetCount = value;
 }
+function decrementCurrentSetCount() {
+  currentSetCount -= 1;
+}
 
 export {
   _storedGameRaw,
@@ -162,4 +165,5 @@ export {
   currentSet,
   currentSetCount,
   changeCurrentSetCount,
+  decrementCurrentSetCount,
 };

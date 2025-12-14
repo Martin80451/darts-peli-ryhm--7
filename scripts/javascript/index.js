@@ -20,6 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("setSize")
     .addEventListener("input", (e) => enforceValueLimits(e.target));
 
+  document.querySelectorAll(".gameTypeButton").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      document.getElementById("gameType").value = this.value;
+    });
+  });
+
   // Kutsuu giveNames funktion aina kun pelaajamäärää muutetaan
   playerSelect.addEventListener("change", (e) => {
     giveNames(e.target.value);
