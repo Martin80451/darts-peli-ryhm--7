@@ -79,7 +79,8 @@ if (_storedGameData && _storedGameData.startingPlayer) {
   turns = Number(_storedGameData.startingPlayer) - 1;
 }
 const currentSet = document.getElementById("set");
-let currentSetCount = getSetCount();
+let currentSetCount;
+changeCurrentSetCount(getSetCount());
 
 //-------------------MUUTTUJAN TILAN KÄSITTELIJÄFUNKTIOT---------------------------//
 function nextTurn() {
@@ -101,6 +102,9 @@ function setNames(value) {
 }
 function setPlayerNamesInGame(value) {
   playerNamesInGame = value;
+}
+function changeCurrentSetCount(value) {
+  currentSetCount = value;
 }
 
 export {
@@ -157,4 +161,5 @@ export {
   setPlayerNamesInGame,
   currentSet,
   currentSetCount,
+  changeCurrentSetCount,
 };

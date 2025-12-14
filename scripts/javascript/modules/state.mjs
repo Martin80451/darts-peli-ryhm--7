@@ -22,6 +22,7 @@ import {
   p4Input,
   currentSet,
   currentSetCount,
+  changeCurrentSetCount,
 } from "./variables.mjs";
 
 //-------------------INDEX.JS STATE---------------------------//
@@ -65,6 +66,15 @@ function winnerCheck() {
     alert(`It's a tie between: ${winners.join(", ")}`);
   }
   resetGame(false);
+}
+
+function updateSetSize() {
+  currentSetCount--;
+  currentSet.innerText = `Current set: ${currentSetCount}`;
+  console.log("Updated set size:", currentSetCount);
+  if (currentSetCount === 0) {
+    winnerCheck();
+  }
 }
 
 //Pelaajien pistemäärät ja jäljellä olevat pisteet
@@ -151,19 +161,19 @@ function resetGame(legWon) {
     playerPoints[i] = 0;
     playerLegsWon[i] = legWon ? playerLegsWon[i] : 0;
     amountleft[i] = gameLength;
-    currentSetCount = getSetCount();
+    changeCurrentSetCount(getSetCount());
     currentSet.innerText = `Current set: ${currentSetCount}`;
   }
 
   //Päivitetään näytölle ------------HUOM! Tekstit poistettu, jätetty vain numeroarvot -Elisa
-  document.getElementById("player1pointsLeft").innerText = ` ${amountleft[i]}`;
-  player1wins.innerText = ` ${playerLegsWon[i]}`;
-  document.getElementById("player2pointsLeft").innerText = ` ${amountleft[i]}`;
-  player2wins.innerText = ` ${playerLegsWon[i]}`;
-  document.getElementById("player3pointsLeft").innerText = ` ${amountleft[i]}`;
-  player3wins.innerText = ` ${playerLegsWon[i]}`;
-  document.getElementById("player4pointsLeft").innerText = ` ${amountleft[i]}`;
-  player4wins.innerText = ` ${playerLegsWon[i]}`;
+  document.getElementById("player1pointsLeft").innerText = ` ${amountleft[0]}`;
+  player1wins.innerText = ` ${playerLegsWon[0]}`;
+  document.getElementById("player2pointsLeft").innerText = ` ${amountleft[1]}`;
+  player2wins.innerText = ` ${playerLegsWon[1]}`;
+  document.getElementById("player3pointsLeft").innerText = ` ${amountleft[2]}`;
+  player3wins.innerText = ` ${playerLegsWon[2]}`;
+  document.getElementById("player4pointsLeft").innerText = ` ${amountleft[3]}`;
+  player4wins.innerText = ` ${playerLegsWon[3]}`;
 
   //Tyhjennetään pistetaulukot
   for (let i = 0; i < playerCount; i++) {
