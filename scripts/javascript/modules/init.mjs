@@ -27,6 +27,8 @@ import {
   changeRandomizerValue,
   setNames,
   setPlayerNamesInGame,
+  player3PointsLeft,
+  player4PointsLeft,
 } from "./variables.mjs";
 import { showPopupMain } from "./popup.mjs";
 
@@ -137,6 +139,9 @@ function givePlayersScoreboard() {
   //piilota pelaajien pistetaulukot
   player4Table.style.display = count < 4 ? "none" : "flex";
   player3Table.style.display = count < 3 ? "none" : "flex";
+
+  player3PointsLeft.style.display = count < 3 ? "none" : "flex";
+  player4PointsLeft.style.display = count < 4 ? "none" : "flex";
 }
 
 export {

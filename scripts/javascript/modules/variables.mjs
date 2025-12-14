@@ -47,6 +47,9 @@ const player2wins = document.getElementById("player2wins");
 const player3wins = document.getElementById("player3wins");
 const player4wins = document.getElementById("player4wins");
 
+const player3PointsLeft = document.getElementById("player3pointsLeft");
+const player4PointsLeft = document.getElementById("player4pointsLeft");
+
 //Kootaan pelaajat ja taulukot listoiksi helpompaa käsittelyä varten
 const allPlayers = [player1Header, player2Header, player3Header, player4Header];
 const allTables = [player1Table, player2Table, player3Table, player4Table];
@@ -166,4 +169,6 @@ export {
   currentSetCount,
   changeCurrentSetCount,
   decrementCurrentSetCount,
+  player3PointsLeft,
+  player4PointsLeft,
 };
