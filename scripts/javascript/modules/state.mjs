@@ -36,7 +36,6 @@ function giveNames(givenPlayerCount) {
 }
 /** Funktio joka varmistaa että input arvot pysyvät määritellyissä rajoissa */
 function enforceValueLimits(inputElement) {
-  console.log("Called " + inputElement);
   const max = parseInt(inputElement.max);
   const min = parseInt(inputElement.min);
   if (parseInt(inputElement.value) > max) {
