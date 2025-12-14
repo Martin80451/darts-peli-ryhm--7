@@ -54,6 +54,7 @@ const playerCount = getPlayerCount();
 //Tarkista onko kukaan voittanut peliä
 function winnerCheck() {
   const names = getPlayerNames();
+  const sets = getSetCount();
   let maxLegs = Math.max(...playerLegsWon);
   let winners = [];
   for (let i = 0; i < playerLegsWon.length; i++) {
@@ -61,12 +62,15 @@ function winnerCheck() {
       winners.push(names[i]);
     }
   }
-  if (winners.length === 1) {
+  if (winners.length === 1 && maxLegs === Math.floor(sets / 2) + 1) {
     alert(`Player: ${winners[0]} wins the game!`);
-  } else {
+    resetGame(false);
+  } else if (winners.length > 1) {
     alert(`It's a tie between: ${winners.join(", ")}`);
+    resetGame(false);
+  } else {
+    resetGame(true);
   }
-  resetGame(false);
 }
 
 function updateSetSize() {
@@ -165,6 +169,7 @@ function resetGame(legWon) {
     changeCurrentSetCount(getSetCount());
     currentSet.innerText = `Current set: ${currentSetCount}`;
   }
+  console.log(amountleft + " " + playerLegsWon);
 
   //Päivitetään näytölle ------------HUOM! Tekstit poistettu, jätetty vain numeroarvot -Elisa
   document.getElementById("player1pointsLeft").innerText = ` ${amountleft[0]}`;
