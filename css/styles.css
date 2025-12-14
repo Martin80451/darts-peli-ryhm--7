@@ -1,29 +1,43 @@
+html, body {
+  min-width: 700px;
+}
 body {
+  background-color: #2e2e2e;
   font-family: "Roboto Condensed", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #393939;
+  color: rgb(240, 240, 240);
   margin: 0;
 }
 section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f5e1bf;
+  background-color: #1b1b19;
   width: 700px;
-  height: 100vh;
+  min-height: 100vh
+}
+p {
+  font-size: 18px;
+  color: white;
 }
 h1 {
-  font-size: 50px;
-  margin-top: 40px;
+    font-family: "Niagara Engraved", sans-serif;
+    font-size: 100px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    color: rgb(240, 240, 240);
 }
 h2 {
-  font-size: 25px;
+  font-size: 30px;
+  font-family: "Niagara Engraved", sans-serif;
+  margin: 20px 0px 10px 0px;
 }
 h3 {
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 10px;
+  color: rgb(240, 240, 240);
 }
 h4 {
   font-size: 22px;
@@ -33,38 +47,9 @@ h5 {
   font-size: 22px;
   text-align: center;
 }
-input,
-select {
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid #313131;
-  background-color: #ffffff;
-  border-radius: 5px;
-  width: 140px;
-  text-align: center;
-}
 
-#randomizePlayersCheck {
-  width: 20px;
-  height: 20px;
-  margin-left: 30px;
-}
-
-option,
-label {
-  font-size: 18px;
-}
-
-#startGame {
-  display: flex;
-  margin: 30px auto;
-  padding: 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border: 4px solid #313131;
-  border-radius: 5px;
-  background-color: #eaeaea;
-}
+/* Etusivu */
+/* Keskittää etusivun elementtejä */
 #startGameForm {
   padding-left: 50px;
   padding-right: 50px;
@@ -73,285 +58,190 @@ label {
   align-items: center;
   justify-content: space-between;
 }
-
-#settingsPopupBackground {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.settingPopup {
-  background: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-  position: relative;
-  text-align: center;
-}
-
-#startGame:hover {
-  transform: scale(1.1);
-}
-
-.scoreCounterForm {
-  background-color: chocolate;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.scoreboard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 600px;
-  /* background-color: blueviolet;  */
-  margin: 0px;
-}
-.player1Name {
-  width: 250px;
-  margin: 0px 15px;
+input,
+select {
+  margin: 10px 0px 10px 20px;
   padding: 10px;
-  text-align: center;
-  background-color: lightblue;
-}
-.player2Name {
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: lightgreen;
-}
-.player1Score {
-  width: 250px;
-  height: 400px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(84, 147, 155);
-}
-.player2Score {
-  width: 250px;
-  height: 400px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(89, 149, 74);
-}
-#resetGame {
-  display: flex;
-  margin: 20px auto;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  border-width: 5px;
-  border-style: solid;
-}
-#newScoreInput {
-  margin: 5px;
-}
-
-/* Popup backdrop */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* Popup box */
-.popup {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  width: 300px;
-  animation: popupIn 0.2s ease;
-}
-
-@keyframes popupIn {
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.popup-image {
-  width: 200px;
-  margin-bottom: 15px;
-}
-
-.popup-text {
-  font-size: 20px;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-#closePopupPlayerChosen {
-  padding: 10px 20px;
-  border: none;
-  background: #333;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-#closePopupPlayerChosen:hover {
-  background: #555;
-}
-body {
-  font-family: "Roboto Condensed", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #393939;
-  margin: 0;
-}
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f5e1bf;
-  width: 700px;
-  height: 100vh;
-}
-h1 {
-  font-size: 50px;
-  margin-top: 40px;
-}
-h2 {
-  font-size: 25px;
-}
-h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-h4 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-h5 {
-  font-size: 22px;
-  text-align: center;
-}
-tr {
-  height: 35.8px;
-}
-input {
-  margin: 20px;
-  padding: 10px;
-  border: 2px solid #313131;
+  border: 2px solid #292929;
   border-radius: 5px;
-  width: 214px;
-  text-align: center;
+  width: 220px;
 }
-
+/* Pelaajien määrä */
+#numPlayers {
+    width: 50px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #e9e9ed;;
+}
+input[type=text] {
+  text-align: center;
+  background-color: #636363;
+  color: rgb(240, 240, 240);
+}
+/* Jättää tilan 3. ja 4. pelaajalle */
+#additionalPlayers {
+  min-height: 60px;
+}
+#randomizePlayersCheck {
+  width: 15px;
+  height: 15px;
+  margin-left: 15px;
+}
+option,
+label {
+  font-size: 18px;
+}
+/* Game type */
 .gameTypeButton {
-  margin: 5px;
+  margin: 5px 5px 10px 0px;
   padding: 60px 100px;
   font-size: 110%;
   font-weight: bold;
   border-radius: 5px;
-  border-width: 5px;
+  border-width: 2px;
   border-style: solid;
   color: white;
   cursor: pointer;
 }
-
-#button1 {
-  background-color: #337d4a;
+#button301 {
+  background-color: rgb(52, 128, 76);
+  border-color: rgb(33, 80, 48);
 }
-#button2 {
-  background-color: #e8cd5e;
+#button501 {
+    background-color: rgb(196, 173, 81);
+    border-color: rgb(112, 98, 42);
 }
-
-#startGame {
-  display: flex;
-  margin: 40px auto;
-  padding: 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-width: 5px;
-  border-style: solid;
-}
-
-#button1:hover,
-#button2:hover,
+#button301:hover,
+#button501:hover,
 #startGame:hover {
   transform: scale(1.1);
 }
 
-#button1:focus,
-#button2:focus {
+#button301:focus,
+#button501:focus {
   transform: scale(1.1);
 }
 
-#button1:active,
-#button2:active {
+#button301:active,
+#button501:active {
   transform: scale(1.1);
 }
-
-.scoreCounterForm {
-  background-color: chocolate;
-  width: 100px;
-  height: 100px;
+/* Set size -näppäin */
+#setSize {
+    appearance: none;
+    width: 50px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    color: rgb(20, 20, 20);
+    background-color: #e9e9ed;
+    /*-moz-appearance:textfield; Tämä jos haluaa nuolet pois!*/
+}
+/* Start Game -näppäin */
+#startGame {
+    display: flex;
+    margin: 30px auto;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+}
+#startGame:hover {
+  transform: scale(1.1);
+}
+/* Scoreboard-näkymä */
+/* Header */
+.header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
-
+#changeSettings {
+  width: 55px;
+  margin: 10px 0px 0px 480px;
+  padding: 4px;
+  font-size: 35px;
+  border-radius: 30px;
+  border-width: 0px;
+  background-color: #636363;
+}
+#changeSettings:hover {
+  background-color: #858585;
+  color: black;
+}
+/*Score Input */
+#newScoreInput input {
+  margin: 5px;
+  height: 70px;
+  width: 90px;
+  font-size: 40px;
+  border-radius: 10px;
+  text-align: center;
+  appearance: none;
+  -moz-appearance: textfield; 
+}
+/*Scoreboard*/
+/* Otsikot */
+.titles {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.titles left {
+  display: flex;
+}
+.titles right {
+  display: flex;
+  gap: 30px;
+  margin-right: 35px;
+}
+/* Scoreboardin rakenne */
 .scoreboard {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+/* Asettaa nimen, pistemäärät ja voitot omalle rivilleen */
+.toprow {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 600px;
-  /* background-color: blueviolet;  */
-  margin: 0px;
 }
-#player1Name {
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: lightblue;
-}
-#player2Name {
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: lightgreen;
-}
-#player3Name {
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(235, 144, 238);
-}
+/* Pelaajien nimet */
+#player1Name,
+#player2Name,
+#player3Name,
 #player4Name {
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(238, 144, 144);
+  font-size: 18px;
+  padding: 15px;
+  width: 100%;
+  text-align: left;
 }
-
+/* Pelaajakohtaiset värit */
+#player1Name,
+#player1wins {
+  background-color: #8b2b14;
+}
+#player2Name,
+#player2wins {
+  background-color: #0c3c5c;
+}
+#player3Name,
+#player3wins {
+  background-color: #4f7146;
+}
+#player4Name,
+#player4wins {
+  background-color: #ffa322;
+}
 .noBorder,
 .noBorder:focus,
 .noBorder:active,
@@ -364,96 +254,62 @@ input {
   outline: none;
   box-shadow: none;
 }
-
 .activeBorder {
-  border: 5px solid white;
+  border: 2px solid white;
 }
-
+/* Pelaajien voittamat legit*/
+#player1wins,
+#player2wins,
+#player3wins,
+#player4wins {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  height: 30px;
+  width: 80px;
+  padding: 10px;
+}
+/* Pelaajien kokonaispisteet */
+#player1pointsLeft,
+#player2pointsLeft,#player3pointsLeft,#player4pointsLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  height: 30px;
+  width: 100px;
+  padding: 10px;
+  background-color: rgb(36, 36, 36);
+}
+/* Pelaajien pistetaulukko */
 #player1Score,
 #player2Score,#player3Score,#player4Score {
   display: flex;
-  flex-direction: row;   /* Tekee taulukosta horisontaalisen */
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-
 #player1Score tr,
 #player2Score tr,#player3Score tr,#player4Score tr {
-  display: flex;        /* Tekee rivistä joustavan taulukon */
-border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut toistaseks osaaminen vähä hakusessa ~ Thomas*/
-  
+  display: flex;
+  height: 50px;
+  border: 1px solid white;
 }
-
 #player1Score td,
 #player2Score td,#player3Score td,#player4Score td {
   text-align: center;
+  justify-content: center;
   padding: 8px;
   margin: 4px;
   background: #f0dcb5;
+  color: black;
+  font-size: 20px;
   border-radius: 6px;
-  width: 30px;
+  width: 35px;
+  height: 26px;
 }
-
-
-#resetGame { 
-  display: flex;
-  margin: 20px auto;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  border-width: 5px;
-  border-style: solid;
-}
-
-#mainmenu { 
-  display: flex;
-  margin: 20px auto;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  border-width: 5px;
-  border-style: solid;
-}
-#newScoreInput {
-  margin: 5px;
-}
-
-
-
-/* Pelaajien voittamat legit PLACEHOLDER*/
-#player1wins {
-  display: flex;
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: lightblue;
-}
-#player2wins {
-  display: flex;
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: lightgreen;
-}
-#player3wins {
-  display: flex;
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(235, 144, 238);
-}
-#player4wins {
-  display: flex;
-  width: 250px;
-  margin: 0px 15px;
-  padding: 10px;
-  text-align: center;
-  background-color: rgb(238, 144, 144);
-}
-
+/* Kaikki popupiin liittyvät*/
 /* Popup backdrop */
 .overlay {
   position: fixed;
@@ -464,34 +320,30 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
   align-items: center;
   z-index: 9999;
 }
-
 /* Popup box */
-.popup {
-  background: white;
+.menuPopup {
+  background: #636363;
   padding: 20px;
   border-radius: 12px;
   text-align: center;
   width: 300px;
   animation: popupIn 0.2s ease;
 }
-
 @keyframes popupIn {
   from { transform: scale(0.7); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
-
 .popup-image {
   width: 200px;
   margin-bottom: 15px;
 }
-
 .popup-text {
   font-size: 20px;
   margin-bottom: 15px;
   font-weight: bold;
 }
-
-.closePopup {
+.closePopup,
+.continuePopup {
   padding: 10px 20px;
   border: none;
   background: #333;
@@ -500,6 +352,70 @@ border: 30px solid white ; /* Tähän yritin väsää jotain reunaa scorelle mut
   cursor: pointer;
   border-radius: 6px;
 }
-.closePopup:hover {
+.closePopup:hover,
+.continuePopup:hover {
   background: #555;
+}
+/* Popup box Player Chosen */
+#closePopupPlayerChosen {
+  padding: 10px 20px;
+  border: none;
+  background: #333;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+#closePopupPlayerChosen:hover {
+  background: #555;
+}
+/* Popup Settings */
+#settingsPopupBackground {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+.settingsPopup {
+  background: #636363;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 200px;
+  position: relative;
+  text-align: center;
+}
+#resetGame,
+#mainmenu { 
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  width: 150px;
+  padding: 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 6px;
+  background-color: rgb(36, 36, 36);
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(240, 240, 240);
+}
+#resetGame {
+  background-color: rgb(196, 173, 81);
+  border-color: rgb(112, 98, 42);
+}
+#mainmenu {
+  background-color: rgb(52, 128, 76);
+  border-color: rgb(33, 80, 48);
+}
+#resetGame:hover{
+  background-color: rgb(112, 98, 42);
+}
+#mainmenu:hover{
+  background-color: rgb(33, 80, 48);
 }

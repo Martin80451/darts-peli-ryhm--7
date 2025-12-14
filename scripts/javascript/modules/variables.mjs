@@ -1,4 +1,4 @@
-import { getPlayerCount, gameMode } from "./storage.mjs";
+import { getPlayerCount, gameMode, getSetCount } from "./storage.mjs";
 
 //-------------------INDEX.JS MUUTTUJAT---------------------------//
 const numPlayersInput = document.getElementById("numPlayers");
@@ -78,6 +78,8 @@ let turns = 0;
 if (_storedGameData && _storedGameData.startingPlayer) {
   turns = Number(_storedGameData.startingPlayer) - 1;
 }
+const currentSet = document.getElementById("set");
+let currentSetCount = getSetCount();
 
 //-------------------MUUTTUJAN TILAN KÄSITTELIJÄFUNKTIOT---------------------------//
 function nextTurn() {
@@ -153,4 +155,6 @@ export {
   setSelectedSetSize,
   setNames,
   setPlayerNamesInGame,
+  currentSet,
+  currentSetCount,
 };

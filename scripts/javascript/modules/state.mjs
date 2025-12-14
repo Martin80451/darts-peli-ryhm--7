@@ -20,6 +20,8 @@ import {
   nextTurn,
   p3Input,
   p4Input,
+  currentSet,
+  currentSetCount,
 } from "./variables.mjs";
 
 //-------------------INDEX.JS STATE---------------------------//
@@ -49,16 +51,20 @@ function enforceValueLimits(inputElement) {
 const playerCount = getPlayerCount();
 //Tarkista onko kukaan voittanut peliä
 function winnerCheck() {
-  //TODO: kokeile tuleeko pelaaja nimet oikein erien ja pelin loputtua
   const names = getPlayerNames();
-  const sets = getSetCount();
-  for (let i = 0; i < playerCount; i++) {
-    if (playerLegsWon[i] >= Math.floor(sets / 2) + 1) {
-      //TODO: Muuta voittoon tarvittavien legien määrä dynaamisesti aloitusnäytöltä
-      alert(`Player: ${names[i]} wins the game!`);
-      resetGame(false);
+  let maxLegs = Math.max(...playerLegsWon);
+  let winners = [];
+  for (let i = 0; i < playerLegsWon.length; i++) {
+    if (playerLegsWon[i] === maxLegs) {
+      winners.push(names[i]);
     }
   }
+  if (winners.length === 1) {
+    alert(`Player: ${winners[0]} wins the game!`);
+  } else {
+    alert(`It's a tie between: ${winners.join(", ")}`);
+  }
+  resetGame(false);
 }
 
 //Pelaajien pistemäärät ja jäljellä olevat pisteet
@@ -90,22 +96,22 @@ function playerPointsUpdate() {
       case 0:
         document.getElementById(
           "player1pointsLeft"
-        ).innerText = `points left: ${amountleft[i]}`;
+        ).innerText = `${amountleft[i]}`;
         break;
       case 1:
         document.getElementById(
           "player2pointsLeft"
-        ).innerText = `points left: ${amountleft[i]}`;
+        ).innerText = `${amountleft[i]}`;
         break;
       case 2:
         document.getElementById(
           "player3pointsLeft"
-        ).innerText = `points left: ${amountleft[i]}`;
+        ).innerText = `${amountleft[i]}`;
         break;
       case 3:
         document.getElementById(
           "player4pointsLeft"
-        ).innerText = `points left: ${amountleft[i]}`;
+        ).innerText = `${amountleft[i]}`;
         break;
     }
 
@@ -116,19 +122,20 @@ function playerPointsUpdate() {
       alert(
         `Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`
       );
+      updateSetSize();
       //Päivitetään näytölle voitettujen legien määrä
       switch (i) {
         case 0:
-          player1wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          player1wins.innerText = `${playerLegsWon[i]}`;
           break;
         case 1:
-          player2wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          player2wins.innerText = `${playerLegsWon[i]}`;
           break;
         case 2:
-          player3wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          player3wins.innerText = `${playerLegsWon[i]}`;
           break;
         case 3:
-          player4wins.innerText = `legs won: ${playerLegsWon[i]}`;
+          player4wins.innerText = `${playerLegsWon[i]}`;
           break;
       }
       winnerCheck(); //Tarkistetaan onko peli voitettu
@@ -144,25 +151,19 @@ function resetGame(legWon) {
     playerPoints[i] = 0;
     playerLegsWon[i] = legWon ? playerLegsWon[i] : 0;
     amountleft[i] = gameLength;
+    currentSetCount = getSetCount();
+    currentSet.innerText = `Current set: ${currentSetCount}`;
   }
 
-  //Päivitetään näytölle
-  document.getElementById(
-    "player1pointsLeft"
-  ).innerText = `points left: ${amountleft[0]}`;
-  player1wins.innerText = `legs won: ${playerLegsWon[0]}`;
-  document.getElementById(
-    "player2pointsLeft"
-  ).innerText = `points left: ${amountleft[1]}`;
-  player2wins.innerText = `legs won: ${playerLegsWon[1]}`;
-  document.getElementById(
-    "player3pointsLeft"
-  ).innerText = `points left: ${amountleft[2]}`;
-  player3wins.innerText = `legs won: ${playerLegsWon[2]}`;
-  document.getElementById(
-    "player4pointsLeft"
-  ).innerText = `points left: ${amountleft[3]}`;
-  player4wins.innerText = `legs won: ${playerLegsWon[3]}`;
+  //Päivitetään näytölle ------------HUOM! Tekstit poistettu, jätetty vain numeroarvot -Elisa
+  document.getElementById("player1pointsLeft").innerText = ` ${amountleft[i]}`;
+  player1wins.innerText = ` ${playerLegsWon[i]}`;
+  document.getElementById("player2pointsLeft").innerText = ` ${amountleft[i]}`;
+  player2wins.innerText = ` ${playerLegsWon[i]}`;
+  document.getElementById("player3pointsLeft").innerText = ` ${amountleft[i]}`;
+  player3wins.innerText = ` ${playerLegsWon[i]}`;
+  document.getElementById("player4pointsLeft").innerText = ` ${amountleft[i]}`;
+  player4wins.innerText = ` ${playerLegsWon[i]}`;
 
   //Tyhjennetään pistetaulukot
   for (let i = 0; i < playerCount; i++) {
@@ -218,6 +219,11 @@ function decidePlayer(content) {
     case 3:
       return content[3];
   }
+}
+
+function SetSize() {
+  currentSet.innerText = `Current set: ${currentSetCount}`;
+  console.log("Set size initialized:", currentSetCount);
 }
 
 export { addToScore, resetGame, giveNames, enforceValueLimits };

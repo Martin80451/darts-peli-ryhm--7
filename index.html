@@ -19,19 +19,19 @@
   <body>
     <section>
       <h1>Darts Point Calculator</h1>
-
       <form id="startGameForm">
         <h3>Players:</h3>
-        <label for="numPlayers">Select number of players (1-4):</label>
+        <label for="numPlayers">Select number of players (2-4):</label>
         <input
           id="numPlayers"
           type="number"
           name="numPlayers"
-          min="1"
+          min="2"
           max="4"
           value="2"
         />
         <div id="userInputs">
+          <div id="twoPlayers">
           <input
             id="player1"
             class="player"
@@ -51,7 +51,8 @@
             name="player2"
             type="text"
             maxlength="20"
-          />
+          /></div>
+          <div id="additionalPlayers">
           <input
             id="player3"
             class="player"
@@ -70,22 +71,24 @@
             placeholder="Player 4"
             name="player4"
             type="text"
-            maxlength="20"
           />
         </div>
-        <br />
+        <div>
         <label for="randomizePlayersCheck">Randomize first player:</label>
         <input
           id="randomizePlayersCheck"
           type="checkbox"
           name="randomizePlayersCheck"
-        />
+        /></div>
 
         <h3>Select game type:</h3>
-        <select id="gameType" name="gameType" class="gameTypeSelection">
-          <option value="301">301</option>
-          <option value="501">501</option>
-        </select>
+          <form id="gameForm">
+            <input type="hidden" id="gameType" name="gameType">  <!-- piilotettu kenttä johon gametype tallennetaan -->
+            <div>
+            <button class="gameTypeButton" id="button301" type="button" value="301">301 up</button>
+            <button class="gameTypeButton" id="button501" type="button" value="501">501 up</button>
+          </div>
+        </form>
 
         <h3>Select set size:</h3>
         <input
@@ -100,15 +103,15 @@
       </form>
 
       <div id="settingsPopupBackground">
-        <div class="settingPopup">
+        <div class="settingsPopup">
           <div id="popupContent"></div>
-          <button id="closePopup">Close</button>
-          <button id="continuePopup">Continue</button>
+          <button id="closePopup", class="closePopup">Close</button>
+          <button id="continuePopup", class="continuePopup">Continue</button>
         </div>
       </div>
     </section>
     <div id="overlay" class="overlay">
-      <div class="popup">
+      <div class="menuPopup">
         <img id="popupImg" src="" class="popup-image" alt="" />
         <p class="popup-text"><span id="popupPlayerNum"></span> aloittaa</p>
         <button id="closePopupPlayerChosen">OK</button>
