@@ -19,7 +19,6 @@
   <body>
     <section>
       <h1>Darts Point Calculator</h1>
-
       <form id="startGameForm">
         <h3>Players:</h3>
         <label for="numPlayers">Select number of players (2-4):</label>
@@ -101,15 +100,15 @@
       </form>
 
       <div id="settingsPopupBackground">
-        <div class="settingPopup">
+        <div class="settingsPopup">
           <div id="popupContent"></div>
-          <button id="closePopup">Close</button>
-          <button id="continuePopup">Continue</button>
+          <button id="closePopup", class="closePopup">Close</button>
+          <button id="continuePopup", class="continuePopup">Continue</button>
         </div>
       </div>
     </section>
     <div id="overlay" class="overlay">
-      <div class="popup">
+      <div class="menuPopup">
         <img id="popupImg" src="" class="popup-image" alt="" />
         <p class="popup-text"><span id="popupPlayerNum"></span> aloittaa</p>
         <button id="closePopupPlayerChosen">OK</button>

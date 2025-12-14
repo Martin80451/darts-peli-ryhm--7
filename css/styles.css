@@ -1,3 +1,6 @@
+html, body {
+  min-width: 700px;
+}
 body {
   background-color: #2e2e2e;
   font-family: "Roboto Condensed", sans-serif;
@@ -11,15 +14,14 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #272727;
+  background-color: #1b1b19;
   width: 700px;
-  height: 100vh;
+  min-height: 100vh
 }
 p {
   font-size: 18px;
   color: white;
 }
-
 h1 {
     font-family: "Niagara Engraved", sans-serif;
     font-size: 100px;
@@ -45,6 +47,7 @@ h5 {
   font-size: 22px;
   text-align: center;
 }
+
 /* Etusivu */
 /* Keskittää etusivun elementtejä */
 #startGameForm {
@@ -162,9 +165,17 @@ label {
   margin-right: 20px;
 }
 #changeSettings {
-  width: 60px;
+  width: 55px;
   margin: 10px 0px 0px 480px;
-  padding: 5px;
+  padding: 4px;
+  font-size: 35px;
+  border-radius: 30px;
+  border-width: 0px;
+  background-color: #636363;
+}
+#changeSettings:hover {
+  background-color: #858585;
+  color: black;
 }
 /*Score Input */
 #newScoreInput input {
@@ -172,6 +183,7 @@ label {
   height: 70px;
   width: 90px;
   font-size: 40px;
+  border-radius: 10px;
   text-align: center;
   appearance: none;
   -moz-appearance: textfield; 
@@ -181,17 +193,17 @@ label {
 .titles {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 8px;
   margin-bottom: 5px;
+  font-size: 14px;
 }
 .titles left {
   display: flex;
-  margin-top: 15px;
 }
 .titles right {
   display: flex;
-  gap: 10px;
-  font-size: 16px;
+  gap: 30px;
+  margin-right: 35px;
 }
 /* Scoreboardin rakenne */
 .scoreboard {
@@ -204,32 +216,30 @@ label {
   align-items: center;
 }
 /* Pelaajien nimet */
-#player1Name {
-  font-size: 18px;
-  padding: 15px;
-  width: 100%;
-  text-align: left;
-  background-color: #8b2b14;
-}
-#player2Name {
-  font-size: 18px;
-  padding: 15px;
-  width: 100%;
-  text-align: left;
-  background-color: #0c3c5c;
-}
-#player3Name {
-  font-size: 18px;
-  padding: 15px;
-  width: 100%;
-  text-align: left;
-  background-color: #4f7146;
-}
+#player1Name,
+#player2Name,
+#player3Name,
 #player4Name {
   font-size: 18px;
   padding: 15px;
   width: 100%;
   text-align: left;
+}
+/* Pelaajakohtaiset värit */
+#player1Name,
+#player1wins {
+  background-color: #8b2b14;
+}
+#player2Name,
+#player2wins {
+  background-color: #0c3c5c;
+}
+#player3Name,
+#player3wins {
+  background-color: #4f7146;
+}
+#player4Name,
+#player4wins {
   background-color: #ffa322;
 }
 .noBorder,
@@ -246,6 +256,31 @@ label {
 }
 .activeBorder {
   border: 2px solid white;
+}
+/* Pelaajien voittamat legit*/
+#player1wins,
+#player2wins,
+#player3wins,
+#player4wins {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  height: 30px;
+  width: 80px;
+  padding: 10px;
+}
+/* Pelaajien kokonaispisteet */
+#player1pointsLeft,
+#player2pointsLeft,#player3pointsLeft,#player4pointsLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  height: 30px;
+  width: 100px;
+  padding: 10px;
+  background-color: rgb(36, 36, 36);
 }
 /* Pelaajien pistetaulukko */
 #player1Score,
@@ -274,60 +309,6 @@ label {
   width: 35px;
   height: 26px;
 }
-/* Pelaajien voittamat legit*/
-#player1wins {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  height: 30px;
-  width: 30px;
-  padding: 10px;
-  background-color: #8b2b14;
-}
-#player2wins {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  height: 30px;
-  width: 30px;
-  padding: 10px;
-  background-color: #0c3c5c;
-}
-#player3wins {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  height: 30px;
-  width: 30px;
-  padding: 10px;
-  background-color: #4f7146;
-}
-#player4wins {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: 0;
-  font-size: 28px;
-  height: 30px;
-  width: 30px;
-  padding: 10px;
-  background-color: #ffa322;
-}
-/* Pelaajien kokonaispisteet */
-#player1pointsLeft,
-#player2pointsLeft,#player3pointsLeft,#player4pointsLeft {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  height: 30px;
-  width: 50px;
-  padding: 10px;
-  background-color: rgb(36, 36, 36);
-}
 /* Kaikki popupiin liittyvät*/
 /* Popup backdrop */
 .overlay {
@@ -340,7 +321,7 @@ label {
   z-index: 9999;
 }
 /* Popup box */
-.popup {
+.menuPopup {
   background: #636363;
   padding: 20px;
   border-radius: 12px;
@@ -361,7 +342,8 @@ label {
   margin-bottom: 15px;
   font-weight: bold;
 }
-.closePopup {
+.closePopup,
+.continuePopup {
   padding: 10px 20px;
   border: none;
   background: #333;
@@ -370,7 +352,8 @@ label {
   cursor: pointer;
   border-radius: 6px;
 }
-.closePopup:hover {
+.closePopup:hover,
+.continuePopup:hover {
   background: #555;
 }
 /* Popup box Player Chosen */
@@ -397,30 +380,42 @@ label {
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
 }
-.settingPopup {
+.settingsPopup {
   background: #636363;
   margin: 10% auto;
   padding: 20px;
   border-radius: 8px;
-  width: 300px;
+  width: 200px;
   position: relative;
   text-align: center;
 }
-#resetGame { 
-  display: flex;
-  margin: 20px auto;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  border-width: 5px;
-  border-style: solid;
-}
+#resetGame,
 #mainmenu { 
   display: flex;
-  margin: 20px auto;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  border-width: 5px;
+  justify-content: center;
+  margin: 10px auto;
+  width: 150px;
+  padding: 15px;
   border-style: solid;
+  border-width: 2px;
+  border-radius: 6px;
+  background-color: rgb(36, 36, 36);
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(240, 240, 240);
+}
+#resetGame {
+  background-color: rgb(196, 173, 81);
+  border-color: rgb(112, 98, 42);
+}
+#mainmenu {
+  background-color: rgb(52, 128, 76);
+  border-color: rgb(33, 80, 48);
+}
+#resetGame:hover{
+  background-color: rgb(112, 98, 42);
+}
+#mainmenu:hover{
+  background-color: rgb(33, 80, 48);
 }
