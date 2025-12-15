@@ -31,6 +31,7 @@ import {
   playerHeaders,
   currentSet,
   currentSetCount,
+  continuePopupBtn,
 } from "./variables.mjs";
 import { showPopupMain } from "./popup.mjs";
 
@@ -59,8 +60,16 @@ function initializeGameSettings() {
     names.map((n) => (n ? n : null)).filter((n) => n !== null)
   ); //Loopataan aktiiviset pelaajat ja filtteröidään nullit pois
 
-  // popupin sisältö
-  popupContent.innerHTML = `
+  // Tarkista että kaikki pelaajanimet on asetettu
+  if (playerNamesInGame.length < numPlayers) {
+    popupContent.innerHTML = `
+      <h2 style="color: #ffef78; text-shadow: 1px 1px 0 #000000ff;">Alert</strong></h2>
+      <p style="color: #ffef78; text-shadow: 1px 1px 0 #000000ff;">Please enter all player names before starting the game.</p>
+    `;
+    popup.style.display = "block";
+    continuePopupBtn.disabled = true; // disabloi continue nappi, jos pelaajanimet puuttuu
+  } else { // ja kun pelaajanimet on asetettu, näytää yhteenveto asetuksista
+    popupContent.innerHTML = `
       <h2>Confirm Game Settings?</h2>
       <p><strong>Number of Players:</strong> ${numPlayers}</p>
       <p><strong>Player names: ${
@@ -75,7 +84,9 @@ function initializeGameSettings() {
       <p><strong>Set Size:</strong> ${setSize}</p>
       <p>Are you sure you want to start the game with these settings?</p>
     `;
-  popup.style.display = "block";
+    popup.style.display = "block";
+    continuePopupBtn.disabled = false; // enabloi continue nappi, kun pelaajanimet on asetettu
+  }
 }
 
 function startGame() {
