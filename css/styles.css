@@ -356,6 +356,11 @@ label {
 .continuePopup:hover {
   background: #555;
 }
+.continuePopup:disabled {
+  background: #545454;
+  color: #b3b3b3;
+  cursor: not-allowed;
+}
 /* Popup box Player Chosen */
 #closePopupPlayerChosen {
   padding: 10px 20px;
