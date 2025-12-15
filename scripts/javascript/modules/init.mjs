@@ -68,7 +68,8 @@ function initializeGameSettings() {
     `;
     popup.style.display = "block";
     continuePopupBtn.disabled = true; // disabloi continue nappi, jos pelaajanimet puuttuu
-  } else { // ja kun pelaajanimet on asetettu, näytää yhteenveto asetuksista
+  } else {
+    // ja kun pelaajanimet on asetettu, näytää yhteenveto asetuksista
     popupContent.innerHTML = `
       <h2>Confirm Game Settings?</h2>
       <p><strong>Number of Players:</strong> ${numPlayers}</p>
@@ -135,7 +136,7 @@ function setupPlayerNames() {
     playerHeaders[i].innerText = names[i];
     playerPointsLeft[i].innerText = gameLength;
   }
-  currentSet.innerText = `Current set: ${currentSetCount}`;
+  currentSet.innerText = `Current leg: ${currentSetCount}`;
 }
 
 // givePlayersScoreboard jonka periaate on tulkita aktiivisten pelaajien määrä ja piilottaa tarpeettomat pistetaulukot

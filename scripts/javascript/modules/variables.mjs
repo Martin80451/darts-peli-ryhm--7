@@ -91,8 +91,7 @@ if (_storedGameData && _storedGameData.startingPlayer) {
   turns = Number(_storedGameData.startingPlayer) - 1;
 }
 const currentSet = document.getElementById("set");
-let currentSetCount;
-changeCurrentSetCount(getSetCount());
+let currentSetCount = 1;
 
 //-------------------MUUTTUJAN TILAN KÄSITTELIJÄFUNKTIOT---------------------------//
 function nextTurn() {
@@ -115,11 +114,13 @@ function setNames(value) {
 function setPlayerNamesInGame(value) {
   playerNamesInGame = value;
 }
-function changeCurrentSetCount(value) {
-  currentSetCount = value;
-}
-function decrementCurrentSetCount() {
-  currentSetCount -= 1;
+function incrementCurrentSetCount() {
+  const sets = getSetCount();
+  if (currentSetCount >= sets) {
+    currentSetCount = 1; // Reset to 1 if exceeding total sets
+  } else {
+    currentSetCount += 1;
+  }
 }
 
 export {
@@ -176,8 +177,7 @@ export {
   setPlayerNamesInGame,
   currentSet,
   currentSetCount,
-  changeCurrentSetCount,
-  decrementCurrentSetCount,
+  incrementCurrentSetCount,
   playerPointsLeft,
   player3PointsLeft,
   player4PointsLeft,

@@ -22,8 +22,7 @@ import {
   p4Input,
   currentSet,
   currentSetCount,
-  changeCurrentSetCount,
-  decrementCurrentSetCount,
+  incrementCurrentSetCount,
 } from "./variables.mjs";
 
 //-------------------INDEX.JS STATE---------------------------//
@@ -62,10 +61,11 @@ function winnerCheck() {
       winners.push(names[i]);
     }
   }
+  console.log(winners.length + " " + currentSetCount + " " + set);
   if (winners.length === 1 && maxLegs === Math.floor(set / 2) + 1) {
     alert(`Player: ${winners[0]} wins the game!`);
     resetGame(false);
-  } else if (winners.length > 1 && maxLegs === Math.floor(set / 2)) {
+  } else if (winners.length > 1 && currentSetCount === set) {
     alert(`It's a tie between: ${winners.join(", ")}`);
     resetGame(false);
   } else {
@@ -74,12 +74,9 @@ function winnerCheck() {
 }
 
 function updateSetSize() {
-  decrementCurrentSetCount();
-  currentSet.innerText = `Current set: ${currentSetCount}`;
+  incrementCurrentSetCount();
+  currentSet.innerText = `Current leg: ${currentSetCount}`;
   console.log("Updated set size:", currentSetCount);
-  if (currentSetCount === 0) {
-    winnerCheck();
-  }
 }
 
 //Pelaajien pistemäärät ja jäljellä olevat pisteet
@@ -137,7 +134,6 @@ function playerPointsUpdate() {
       alert(
         `Player: ${names[i]} wins the leg! Total legs won: ${playerLegsWon[i]}`
       );
-      updateSetSize();
       //Päivitetään näytölle voitettujen legien määrä
       switch (i) {
         case 0:
@@ -154,6 +150,7 @@ function playerPointsUpdate() {
           break;
       }
       winnerCheck(); //Tarkistetaan onko peli voitettu
+      updateSetSize();
     }
   }
 }
@@ -166,8 +163,7 @@ function resetGame(legWon) {
     playerPoints[i] = 0;
     playerLegsWon[i] = legWon ? playerLegsWon[i] : 0;
     amountleft[i] = gameLength;
-    changeCurrentSetCount(getSetCount());
-    currentSet.innerText = `Current set: ${currentSetCount}`;
+    currentSet.innerText = `Current leg: ${currentSetCount}`;
   }
   console.log(amountleft + " " + playerLegsWon);
 
