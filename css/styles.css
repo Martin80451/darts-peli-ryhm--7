@@ -2,7 +2,7 @@ html, body {
   min-width: 700px;
 }
 body {
-  background-color: #2e2e2e;
+  background-color: #252523;
   font-family: "Roboto Condensed", sans-serif;
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@ section {
 }
 p {
   font-size: 18px;
-  color: white;
+  color: rgb(240, 240, 240);
 }
 h1 {
     font-family: "Niagara Engraved", sans-serif;
@@ -30,14 +30,16 @@ h1 {
     color: rgb(240, 240, 240);
 }
 h2 {
-  font-size: 30px;
+  font-size: 28px;
   font-family: "Niagara Engraved", sans-serif;
   margin: 20px 0px 10px 0px;
+  letter-spacing: 0.6px;
 }
 h3 {
   font-size: 20px;
   margin-bottom: 10px;
   color: rgb(240, 240, 240);
+  letter-spacing: 0.4px;
 }
 h4 {
   font-size: 22px;
@@ -47,7 +49,6 @@ h5 {
   font-size: 22px;
   text-align: center;
 }
-
 /* Etusivu */
 /* Keskittää etusivun elementtejä */
 #startGameForm {
@@ -60,7 +61,7 @@ h5 {
 }
 input,
 select {
-  margin: 10px 0px 10px 20px;
+  margin: 10px 10px 10px 10px;
   padding: 10px;
   border: 2px solid #292929;
   border-radius: 5px;
@@ -73,12 +74,16 @@ select {
     font-size: 14px;
     border-radius: 10px;
     text-align: center;
-    background-color: #e9e9ed;;
+    background-color: #e9e9ed;
 }
 input[type=text] {
   text-align: center;
   background-color: #636363;
   color: rgb(240, 240, 240);
+}
+input:focus {
+  outline: none;
+  border-color: rgb(240, 240, 240);
 }
 /* Jättää tilan 3. ja 4. pelaajalle */
 #additionalPlayers {
@@ -89,11 +94,14 @@ input[type=text] {
   height: 15px;
   margin-left: 15px;
 }
+input[type="checkbox"] {
+  filter: grayscale(100%);
+}
 option,
 label {
   font-size: 18px;
 }
-/* Game type */
+/* Game type-näppäimet */
 .gameTypeButton {
   margin: 5px 5px 10px 0px;
   padding: 60px 100px;
@@ -102,7 +110,7 @@ label {
   border-radius: 5px;
   border-width: 2px;
   border-style: solid;
-  color: white;
+  color: rgb(240, 240, 240);
   cursor: pointer;
 }
 #button301 {
@@ -110,7 +118,7 @@ label {
   border-color: rgb(33, 80, 48);
 }
 #button501 {
-    background-color: rgb(196, 173, 81);
+    background-color: rgb(173, 152, 65);
     border-color: rgb(112, 98, 42);
 }
 #button301:hover,
@@ -118,12 +126,10 @@ label {
 #startGame:hover {
   transform: scale(1.1);
 }
-
 #button301:focus,
 #button501:focus {
   transform: scale(1.1);
 }
-
 #button301:active,
 #button501:active {
   transform: scale(1.1);
@@ -144,12 +150,14 @@ label {
 /* Start Game -näppäin */
 #startGame {
     display: flex;
-    margin: 30px auto;
+    font-family: "Roboto Condensed", sans-serif;
+    background-color: #e9e9ed;
+    margin: 20px auto;
     padding: 15px 20px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     border-radius: 5px;
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
 }
 #startGame:hover {
@@ -164,29 +172,35 @@ label {
   margin-left: 20px;
   margin-right: 20px;
 }
+/* Asetukset-kuvake */
 #changeSettings {
   width: 55px;
-  margin: 10px 0px 0px 480px;
-  padding: 4px;
+  margin: 10px 0px 15px 480px;
   font-size: 35px;
-  border-radius: 30px;
   border-width: 0px;
-  background-color: #636363;
+  color: rgb(240, 240, 240);
+  background-color: transparent;
 }
 #changeSettings:hover {
-  background-color: #858585;
-  color: black;
+  transform: scale(1.2);
+}
+#pointsHeader {
+  margin-top: -5px;
 }
 /*Score Input */
 #newScoreInput input {
   margin: 5px;
-  height: 70px;
-  width: 90px;
-  font-size: 40px;
+  height: 100px;
+  width: 110px;
+  font-size: 45px;
   border-radius: 10px;
   text-align: center;
   appearance: none;
   -moz-appearance: textfield; 
+}
+#currentSet {
+  margin-top: -10px;
+  margin-bottom: -15px;
 }
 /*Scoreboard*/
 /* Otsikot */
@@ -199,11 +213,16 @@ label {
 }
 .titles left {
   display: flex;
+  align-items: end;
 }
 .titles right {
   display: flex;
-  gap: 30px;
-  margin-right: 35px;
+  gap: 42px;
+  margin-right: 18px;
+  align-items: end;
+}
+.titles icon {
+  font-size: 24px;
 }
 /* Scoreboardin rakenne */
 .scoreboard {
@@ -220,10 +239,18 @@ label {
 #player2Name,
 #player3Name,
 #player4Name {
-  font-size: 18px;
+  font-size: 19px;
   padding: 15px;
   width: 100%;
   text-align: left;
+  border-radius: 10px 0px 0px 0px;
+  border: 1px solid transparent;
+}
+#player1Name.activeBorder,
+#player2Name.activeBorder,
+#player3Name.activeBorder,
+#player4Name.activeBorder {
+  border: 1px solid rgb(240, 240, 240);
 }
 /* Pelaajakohtaiset värit */
 #player1Name,
@@ -240,22 +267,25 @@ label {
 }
 #player4Name,
 #player4wins {
-  background-color: #ffa322;
+  background-color: #b36c09;
+}
+#player1wins,
+#player2wins,
+#player3wins,
+#player4wins {
+  border-radius: 0px 10px 0px 0px;
 }
 .noBorder,
 .noBorder:focus,
 .noBorder:active,
 .noBorder:hover {
-  border: none;
+  border: 1px solid rgb(240, 240, 240);
   border-image: none;
   border-image-width: 0;
   border-image-slice: 0;
   border-image-repeat: unset;
   outline: none;
   box-shadow: none;
-}
-.activeBorder {
-  border: 2px solid white;
 }
 /* Pelaajien voittamat legit*/
 #player1wins,
@@ -294,7 +324,7 @@ label {
 #player2Score tr,#player3Score tr,#player4Score tr {
   display: flex;
   height: 50px;
-  border: 1px solid white;
+  border: 1px solid rgb(240, 240, 240);
 }
 #player1Score td,
 #player2Score td,#player3Score td,#player4Score td {
@@ -329,6 +359,15 @@ label {
   width: 300px;
   animation: popupIn 0.2s ease;
 }
+.menuSettingsPopup {
+  background: rgb(36, 36, 36);
+  margin: 10% auto;
+  padding: 20px 20px 30px 20px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+  text-align: center;
+}
 @keyframes popupIn {
   from { transform: scale(0.7); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
@@ -346,8 +385,8 @@ label {
 .continuePopup {
   padding: 10px 20px;
   border: none;
-  background: #333;
-  color: white;
+  background: #111111;
+  color: rgb(240, 240, 240);
   font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
@@ -361,7 +400,7 @@ label {
   padding: 10px 20px;
   border: none;
   background: #333;
-  color: white;
+  color: rgb(240, 240, 240);
   font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
@@ -381,9 +420,9 @@ label {
   background: rgba(0, 0, 0, 0.5);
 }
 .settingsPopup {
-  background: #636363;
+  background: rgb(36, 36, 36);
   margin: 10% auto;
-  padding: 20px;
+  padding: 10px 10px 30px 10px;
   border-radius: 8px;
   width: 200px;
   position: relative;
@@ -394,10 +433,8 @@ label {
   display: flex;
   justify-content: center;
   margin: 10px auto;
-  width: 150px;
+  width: 130px;
   padding: 15px;
-  border-style: solid;
-  border-width: 2px;
   border-radius: 6px;
   background-color: rgb(36, 36, 36);
   font-family: "Roboto Condensed", sans-serif;
@@ -406,11 +443,11 @@ label {
   color: rgb(240, 240, 240);
 }
 #resetGame {
-  background-color: rgb(196, 173, 81);
+  background-color: rgb(173, 152, 65);
   border-color: rgb(112, 98, 42);
 }
 #mainmenu {
-  background-color: rgb(52, 128, 76);
+  background-color: rgb(42, 107, 62);
   border-color: rgb(33, 80, 48);
 }
 #resetGame:hover{
