@@ -117,7 +117,7 @@ function setPlayerNamesInGame(value) {
 function incrementCurrentSetCount() {
   const sets = getSetCount();
   if (currentSetCount >= sets) {
-    currentSetCount = 1; // Reset to 1 if exceeding total sets
+    currentSetCount = 1; // Resettaa yhteen, jos kaikki legit on pelattu
   } else {
     currentSetCount += 1;
   }
